@@ -12,9 +12,9 @@ Pembagian tugas:
    * __F06__ Delete item (Coded :heavy_check_mark: Tested :exclamation:)
    * __F07__ Modify item amount (Coded :heavy_check_mark: Tested :exclamation:)
 4. Vieri
-   * __F08__ Borrow gadget (Coded :x: Tested :x:)
-   * __F09__ Return gadget (Coded :x: Tested :x:)
-   * __F10__ Use consumable (Coded :x: Tested :x:)
+   * __F08__ Borrow gadget (Coded :heavy_check_mark: Tested :exclamation:)
+   * __F09__ Return gadget (Coded :heavy_check_mark: Tested :exclamation:)
+   * __F10__ Use consumable (Coded :heavy_check_mark: Tested :exclamation:)
 5. Alifiya
    * __F11__ Gadget borrow history (Coded :x: Tested :x:)
    * __F12__ Gadget return history (Coded :x: Tested :x:)
