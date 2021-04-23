@@ -2,8 +2,8 @@
 
 Pembagian tugas:
 1. Dira
-   * __F01__ Register (Coded :x: Tested :x:)
-   * __F02__ Login (Coded :x: Tested :x:)
+   * __F01__ Register (Coded :heavy_check_mark: Tested :exclamation:)
+   * __F02__ Login (Coded :heavy_check_mark: Tested :exclamation:)
 2. Rania
    * __F03__ Rarity search (Coded :x: Tested :x:)
    * __F04__ Year search (Coded :x: Tested :x:)
