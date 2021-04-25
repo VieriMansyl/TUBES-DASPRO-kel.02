@@ -2,7 +2,7 @@
 # F03
 
 def carirarity() :
-    rarity = input("Masukkan rarity: \n")
+    rarity = input("Masukkan rarity: ")
     
     print("Hasil pencarian: \n")
 
@@ -21,7 +21,7 @@ def carirarity() :
 
 def caritahun() :
     tahun = int(input("Masukkan tahun: "))
-    kategori = input("Masukkan kategori: \n")    
+    kategori = input("Masukkan kategori: ")    
 
     print("Hasil pencarian: \n")
     if (len(gadget)) == 0 :
