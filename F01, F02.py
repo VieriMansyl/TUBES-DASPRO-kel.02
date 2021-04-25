@@ -51,7 +51,7 @@ def register(users_data) :
     alamat = input("Masukkan alamat : ")
     # Cek alamat, tidak boleh kosong
     while (alamat == ""):
-        print("Alamat invalid, masukkan a;amat lain !")
+        print("Alamat invalid, masukkan alamat lain !")
         alamat = input("Masukkan alamat : ")
 
     role = "user"
