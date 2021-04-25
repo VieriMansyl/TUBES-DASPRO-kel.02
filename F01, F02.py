@@ -9,6 +9,7 @@
 # id, nama, username, password, alamat, role : str
 
 # ALGORITMA
+
 def register(users_data) :
     nama = input("Masukkan nama : ")
     # Huruf kapital otomatis
@@ -32,9 +33,10 @@ def register(users_data) :
     username = input("Masukkan username : ")
     # Username kembar
     def username_kembar(x):
-        for users in users_data:
-            if x == users['username']:
+        for i in range (len(users_data)+1):
+            if x == users_data[i][2]:
                 return False
+
     # Cek Username tidak boleh kosong & ada yg kembar
     while (username == "") or (username_kembar(username) == False):
         print("Username invalid, masukkan username lain !")
@@ -55,13 +57,11 @@ def register(users_data) :
     role = "user"
     identity = (nama[0] + nama[len(nama)-1])
     
-    new_user = {"id" : identity, "nama" : used_name(nama), "username" : username, "password" : password, "alamat" : alamat, "role" : role}
+    new_user = [identity, used_name(nama), username,  password, alamat, role]
 
     users_data.append(new_user)
     
     print(f"User {username} berhasil register ke kantong ajaib." )
-
-    print(users_data)
     
 
 # Fungsi Login
@@ -71,9 +71,9 @@ def login(users_data):
     password = input("Masukkan password : ")
 
     password_benar = ""
-    for users in users_data :
-        if users['username'] == username:
-            password_benar = users["password"]
+    for i in range (len(users_data)) :
+        if users_data[i][2] == username:
+            password_benar = users_data[i][3]
     
     if (password_benar == ""): # Username not found
         print("Username belum terdaftar !")
@@ -83,3 +83,7 @@ def login(users_data):
             password = input("Masukkan password : ")
         else :
             print("Selamat login berhasil !")
+            
+# testing
+users_data = [['Aa', 'Andira Ittiya', 'andirab38', 'aucubknk', 'jl mana no. 13', 'user'],
+              ['Rn', 'Roy Ion' , 'useraja', 'terserah', 'jl lupa no.18', 'user']]
