@@ -20,8 +20,8 @@ Pembagian tugas:
    * __F12__ Gadget return history (Coded :heavy_check_mark: Tested :exclamation:)
    * __F13__ Consumable use history (Coded :heavy_check_mark: Tested :exclamation:)
 6. Free-for-all
-   * __F14__ Load data (Coded :x: Tested :x:)
-   * __F15__ Save data (Coded :x: Tested :x:)
+   * __F14__ Load data (Coded :heavy_check_mark: Tested :exclamation:)
+   * __F15__ Save data (Coded :heavy_check_mark: Tested :exclamation:)
    * __F16__ Help (Coded :x: Tested :x:)
    * __F17__ Exit (Coded :x: Tested :x:)
 
