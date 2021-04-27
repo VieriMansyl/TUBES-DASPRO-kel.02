@@ -9,11 +9,7 @@
 # id, nama, username, password, alamat, role : str
 
 # ALGORITMA
-
-def register(users_data) :
-    nama = input("Masukkan nama : ")
-    # Huruf kapital otomatis
-    def used_name(word): 
+def used_name(word): 
         nameArr = []
         for i in range (len(word)):
             nameArr.append(word[i]) 
@@ -29,14 +25,19 @@ def register(users_data) :
         real_name = "".join(nameArr)
         return(real_name)
 
-
-    username = input("Masukkan username : ")
-    # Username kembar
-    def username_kembar(x):
-        for i in range (len(users_data)+1):
+def username_kembar(x):
+        for i in range (len(users_data)):
             if x == users_data[i][2]:
                 return False
 
+def register(users_data) :
+    nama = input("Masukkan nama : ")
+    # Huruf kapital otomatis
+    used_name(nama)
+
+    username = input("Masukkan username : ")
+    # Username kembar
+    username_kembar(username)
     # Cek Username tidak boleh kosong & ada yg kembar
     while (username == "") or (username_kembar(username) == False):
         print("Username invalid, masukkan username lain !")
@@ -55,7 +56,7 @@ def register(users_data) :
         alamat = input("Masukkan alamat : ")
 
     role = "user"
-    identity = (nama[0] + nama[len(nama)-1])
+    identity = ("U" + str(len(users_data)+1))
     
     new_user = [identity, used_name(nama), username,  password, alamat, role]
 
@@ -85,5 +86,5 @@ def login(users_data):
             print("Selamat login berhasil !")
             
 # testing
-users_data = [['Aa', 'Andira Ittiya', 'andirab38', 'aucubknk', 'jl mana no. 13', 'user'],
-              ['Rn', 'Roy Ion' , 'useraja', 'terserah', 'jl lupa no.18', 'user']]
+users_data = [['U1', 'Andira Ittiya', 'andirab38', 'aucubknk', 'jl mana no. 13', 'user'],
+              ['U2', 'Roy Ion' , 'useraja', 'terserah', 'jl lupa no.18', 'user']]
