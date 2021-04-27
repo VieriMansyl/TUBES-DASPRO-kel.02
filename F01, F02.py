@@ -71,7 +71,7 @@ def register(users_data) :
     
     print(f"User {username} berhasil register ke kantong ajaib." )
     
-    return identity, used_name(nama), username,  password, alamat, role
+    return users_data
 
 # Procedure Login
 # Parameter : users_data
