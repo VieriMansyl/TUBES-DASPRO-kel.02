@@ -2,13 +2,13 @@
 # Fungsi login dan daftar
 # Kontributor : 16520076
 
-# Fungsi register
-# Menambahkan user baru ke database
-
 # Dictionary
 # id, nama, username, password, alamat, role : str
 
-# ALGORITMA
+# Fungsi used_name
+# Membuat nama yg di-input otomatis kapital
+# Parameter : word
+# Return value : real_name
 def used_name(word): 
         nameArr = []
         for i in range (len(word)):
@@ -25,11 +25,18 @@ def used_name(word):
         real_name = "".join(nameArr)
         return(real_name)
 
+# Prosedure username_kembar
+# Menge-cek apakah ada username kembar
+# Parameter : x
 def username_kembar(x):
         for i in range (len(users_data)):
             if x == users_data[i][2]:
                 return False
-
+        
+# Fungsi register
+# Menambahkan user baru ke database
+# Parameter : users_data
+# Return value : identity, used_name(nama), username,  password, alamat, role
 def register(users_data) :
     nama = input("Masukkan nama : ")
     # Huruf kapital otomatis
@@ -66,8 +73,8 @@ def register(users_data) :
     
     return identity, used_name(nama), username,  password, alamat, role
 
-# Fungsi Login
-
+# Procedure Login
+# Parameter : users_data
 def login(users_data):
     username = input("Masukkan username : ")
     password = input("Masukkan password : ")
