@@ -92,7 +92,3 @@ def login(users_data):
             password = input("Masukkan password : ")
         else :
             print("Selamat login berhasil !")
-            
-# testing
-users_data = [['U1', 'Andira Ittiya', 'andirab38', 'aucubknk', 'jl mana no. 13', 'user'],
-              ['U2', 'Roy Ion' , 'useraja', 'terserah', 'jl lupa no.18', 'user']]
