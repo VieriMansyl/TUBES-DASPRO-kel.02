@@ -47,12 +47,8 @@ def username_kembar(x):
 # Return value : identity, used_name(nama), username,  password, alamat, role
 def register(users_data) :
     nama = input("Masukkan nama : ")
-    # Huruf kapital otomatis
-    used_name(nama)
-
+    
     username = input("Masukkan username : ")
-    # Username kembar
-    username_kembar(username)
     # Cek Username tidak boleh kosong & ada yg kembar
     while (username == "") or (username_kembar(username) == False) or (is_underscore(username) == True):
         print("Username invalid, masukkan username lain !")
