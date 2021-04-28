@@ -11,7 +11,7 @@ def carirarity(gadget) :
         print("Tidak ditemukan gadget dengan rarity", rarity)
     else : #data ada
         #looping untuk mengecek seluruh data untuk print data
-        for i in range(1, len(gadget)) :
+        for i in range(0, len(gadget)) :
             if rarity == gadget[i][4] :
                 print("Nama             :", gadget[i][1])
                 print("Deskripsi        :", gadget[i][2])
@@ -19,7 +19,7 @@ def carirarity(gadget) :
                 print("Rarity           :", gadget[i][4])
                 print("Tahun ditemukan  :", gadget[i][5], "\n")
         #looping untuk mengecek jumlah data yang cocok
-        for i in range(1,len(gadget)) :
+        for i in range(0,len(gadget)) :
             if rarity == gadget[i][4] :
                 jumlahdata += 1
             else :
@@ -43,7 +43,7 @@ def caritahun(gadget) :
     else : #data ada
         if kategori == "=" :  
             #looping untuk mengecek seluruh data untuk print data
-            for i in range(1, len(gadget)) :
+            for i in range(0, len(gadget)) :
                 if tahun == int(gadget[i][5]) :
                     print("Nama             :", gadget[i][1])
                     print("Deskripsi        :", gadget[i][2])
@@ -51,7 +51,7 @@ def caritahun(gadget) :
                     print("Rarity           :", gadget[i][4])
                     print("Tahun ditemukan  :", gadget[i][5], "\n")
             #looping untuk mengecek jumlah data yang cocok
-            for i in range(1,len(gadget)) :
+            for i in range(0,len(gadget)) :
                 if tahun == int(gadget[i][5]) :
                     jumlahdata += 1
                 else :
@@ -62,7 +62,7 @@ def caritahun(gadget) :
 
         elif kategori == ">" :
             #looping untuk mengecek seluruh data untuk print data
-            for i in range(1, len(gadget)) :
+            for i in range(0, len(gadget)) :
                 if int(gadget[i][5]) > tahun :
                     print("Nama             :", gadget[i][1])
                     print("Deskripsi        :", gadget[i][2])
@@ -70,8 +70,8 @@ def caritahun(gadget) :
                     print("Rarity           :", gadget[i][4])
                     print("Tahun ditemukan  :", gadget[i][5], "\n")
             #looping untuk mengecek jumlah data yang cocok
-            for i in range(1,len(gadget)) :
-                if tahun == int(gadget[i][5]) :
+            for i in range(0,len(gadget)) :
+                if int(gadget[i][5]) > tahun :
                     jumlahdata += 1
                 else :
                     jumlahdata += 0
@@ -82,7 +82,7 @@ def caritahun(gadget) :
         elif kategori == "<" :
             #looping untuk mengecek seluruh data untuk print data
     
-            for i in range(1, len(gadget)) :
+            for i in range(0, len(gadget)) :
                 if int(gadget[i][5]) < tahun :
                     print("Nama             :", gadget[i][1])
                     print("Deskripsi        :", gadget[i][2])
@@ -90,8 +90,8 @@ def caritahun(gadget) :
                     print("Rarity           :", gadget[i][4])
                     print("Tahun ditemukan  :", gadget[i][5], "\n")
             #looping untuk mengecek jumlah data yang cocok
-            for i in range(1,len(gadget)) :
-                if tahun == int(gadget[i][5]) :
+            for i in range(0,len(gadget)) :
+                if int(gadget[i][5]) < tahun :
                     jumlahdata += 1
                 else :
                     jumlahdata += 0
@@ -101,7 +101,7 @@ def caritahun(gadget) :
     
         elif kategori == ">=" :
             #looping untuk mengecek seluruh data untuk print data
-            for i in range(1, len(gadget)) :
+            for i in range(0, len(gadget)) :
                 if int(gadget[i][5]) >= tahun :
                     print("Nama             :", gadget[i][1])
                     print("Deskripsi        :", gadget[i][2])
@@ -109,8 +109,8 @@ def caritahun(gadget) :
                     print("Rarity           :", gadget[i][4])
                     print("Tahun ditemukan  :", gadget[i][5], "\n")
             #looping untuk mengecek jumlah data yang cocok
-            for i in range(1,len(gadget)) :
-                if tahun == int(gadget[i][5]) :
+            for i in range(0,len(gadget)) :
+                if int(gadget[i][5]) >= tahun :
                     jumlahdata += 1
                 else :
                     jumlahdata += 0
@@ -120,7 +120,7 @@ def caritahun(gadget) :
 
         elif kategori == "<=" :
             #looping untuk mengecek seluruh data untuk print data
-            for i in range(1, len(gadget)) :
+            for i in range(0, len(gadget)) :
                 if int(gadget[i][5]) <= tahun :
                     print("Nama             :", gadget[i][1])
                     print("Deskripsi        :", gadget[i][2])
@@ -128,8 +128,8 @@ def caritahun(gadget) :
                     print("Rarity           :", gadget[i][4])
                     print("Tahun ditemukan  :", gadget[i][5], "\n")
             #looping untuk mengecek jumlah data yang cocok
-            for i in range(1,len(gadget)) :
-                if tahun == int(gadget[i][5]) :
+            for i in range(0,len(gadget)) :
+                if int(gadget[i][5]) <= tahun :
                     jumlahdata += 1
                 else :
                     jumlahdata += 0
