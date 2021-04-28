@@ -100,6 +100,3 @@ def login(users_data):
             password = input("Masukkan password : ")
         else :
             print("Selamat login berhasil !")
-
-
-users_data = []
