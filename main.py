@@ -5,6 +5,7 @@
 import argparse
 import item_interaction
 import database_io
+import cari_item
 
 # Dictionary
 #
@@ -51,9 +52,9 @@ while True:
     elif command == "login":
         pass
     elif command == "cari_item_rarity":
-        pass
+        cari_item.carirarity(gadget)
     elif command == "cari_item_tahun":
-        pass
+        cari_item.caritahun(gadget)
     elif command == "tambah_item":
         gadget, consumable = item_interaction.add_item(gadget, consumable)
     elif command == "hapus_item":
