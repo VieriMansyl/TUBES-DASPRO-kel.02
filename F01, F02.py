@@ -25,14 +25,22 @@ def used_name(word):
         real_name = "".join(nameArr)
         return(real_name)
 
-# Prosedure username_kembar
+# Procedure is_underscore
+# Menge-cek apakah ada username kembar
+# Parameter : x
+def is_underscore(x):
+    for char in x:
+        if char == "_":
+            return True
+
+# Procedure username_kembar
 # Menge-cek apakah ada username kembar
 # Parameter : x
 def username_kembar(x):
         for i in range (len(users_data)):
             if x == users_data[i][2]:
                 return False
-        
+    
 # Fungsi register
 # Menambahkan user baru ke database
 # Parameter : users_data
@@ -46,7 +54,7 @@ def register(users_data) :
     # Username kembar
     username_kembar(username)
     # Cek Username tidak boleh kosong & ada yg kembar
-    while (username == "") or (username_kembar(username) == False):
+    while (username == "") or (username_kembar(username) == False) or (is_underscore(username) == True):
         print("Username invalid, masukkan username lain !")
         username = input("Masukkan username : ")
 
@@ -92,3 +100,6 @@ def login(users_data):
             password = input("Masukkan password : ")
         else :
             print("Selamat login berhasil !")
+
+
+users_data = []
