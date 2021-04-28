@@ -46,26 +46,31 @@ def change_data_type(data_type, database):
     database_copy = database[:]
 
     if data_type == "gadget":
-        for i in range(6):
-            if i == 3 or i == 5:
-                database_copy[i] = int(database_copy[i])
+        for j in range(len(database_copy)):
+            for i in range(6):
+                if i == 3 or i == 5:
+                    database_copy[j][i] = int(database_copy[j][i])
+
     elif data_type == "consum":
-        for i in range(5):
-            if i == 3:
-                database_copy[i] = int(database_copy[i])
+        for j in range(len(database_copy)):
+            for i in range(5):
+                if i == 3:
+                    database_copy[j][i] = int(database_copy[j][i])
     elif data_type == "gadget_borrow":
-        for i in range(6):
-            if i == 4:
-                database_copy[i] = int(database_copy[i])
-            elif i == 5:
-                if database_copy[i] == "True":
-                    database_copy[i] = True
-                else:
-                    database_copy[i] = False
+        for j in range(len(database_copy)):
+            for i in range(6):
+                if i == 4:
+                    database_copy[j][i] = int(database_copy[j][i])
+                elif i == 5:
+                    if database_copy[j][i] == "True":
+                        database_copy[j][i] = True
+                    else:
+                        database_copy[j][i] = False
     elif data_type == "consum_history":
-        for i in range(5):
-            if i == 4:
-                database_copy[i] = int(database_copy[i])
+        for j in range(len(database_copy)):
+            for i in range(5):
+                if i == 4:
+                    database_copy[j][i] = int(database_copy[j][i])
     else:  # data_type == "user" or data_type == "gadget_return"
         pass
 
