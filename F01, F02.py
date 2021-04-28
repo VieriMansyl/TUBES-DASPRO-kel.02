@@ -92,7 +92,7 @@ def login(users_data):
         print("Username belum terdaftar !")
     else:
         while (password) != (password_benar):
-            print("Upps, password salah silakan coba lagi !")
+            print("Upps, password salah. silahkan coba lagi !")
             password = input("Masukkan password : ")
         else :
             print("Selamat login berhasil !")
