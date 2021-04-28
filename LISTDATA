@@ -1,0 +1,41 @@
+history_pinjam = [["1","U1","G1","18/04/2022",25],
+                 ["2","U2","G2","19/04/2022",10],
+                 ["3","U3","G3","22/04/2022",2],
+                 ["4","U4","G4","20/04/2022",5],
+                 ["5","U5","G5","02/11/2002",20],
+                 ["6","U6","G6","21/04/2022",10]]
+
+history_kembalian = [["1","1","18/04/2022"],
+             ["2","2","19/04/2022"],
+             ["3","3","22/04/2022"],
+             ["4","4","20/04/2022"],
+             ["5","5","21/04/2022"],
+             ["6","1","20/04/2023"]]
+
+user = [["U1","parker04","Peter Parker"],
+        ["U2","visionwanda","Wanda Vision"],
+        ["U3","heheheyyy","Yoga"],
+        ["U4","x(","Reza"],
+        ["U5","dendong","Deen"],
+        ["U6","vierimansyl","vieri"]]
+
+gadget = [["G1","Gateway to Anywhere"],
+          ["G2","Baling Bambu"],
+          ["G3","Laptop"],
+          ["G4","Machine Learning"],
+          ["G5","Buku Sobbota"],
+          ["G6","iphone 20"]]
+
+consumable = [["C1","kerak telor","pake telur",32,"C"],
+              ["C2","KFC","pake ayam",16,"S"],
+              ["C3","rujak","pake buah",23,"A"],
+              ["C4","takjil","pake air",50,"B"],
+              ["C5","dodol","pake santan",35,"B"],
+              ["C6","kolak pisang","pake santan juga","15","A"]]
+
+history_minta = [["1","U1","C1","22/04/2022",14],
+                  ["2","U2","C2","23/04/2022",9],
+                  ["3","U3","C3","19/04/2022",18],
+                  ["4","U4","C4","21/04/2022",20],
+                  ["5","U5","C5","24/04/2022",13],
+                  ["6","U1","C3","26/04/2025",5]]

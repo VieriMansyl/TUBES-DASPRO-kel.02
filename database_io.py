@@ -3,7 +3,6 @@
 # Contributor : 16520056, 16520086
 
 # Dependency
-# import argparse
 import os
 
 
@@ -138,7 +137,7 @@ def save(folder_name, file_name, data):
 
     os.chdir(folder_name)
     # checks whether such file exists in the folder
-    if not os.path.exists(file_name):
+    if not os.path.exists(file_name):  # file doesn't exist
         f = open(file_name, "x")  # creates the file and initialises it to be written
         f.write(data)
         f.close()
