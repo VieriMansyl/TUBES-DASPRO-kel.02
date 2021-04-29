@@ -1,6 +1,7 @@
 # Library item_interaction
 # Contains functions and procedures required to interact with items
 # Contributor : 16520086
+# Tester : 16520006
 
 # Function add_item
 # Adds a new item into the database
@@ -10,6 +11,7 @@
 # item_id : str
 # gad_name, gad_desc, gad_rarity : str
 # gad_amount, gad_year : int
+# new_gadget : list
 # con_name, con_desc, con_rarity : str
 # con_amount : int
 # new_consumable : list
@@ -56,6 +58,7 @@ def add_item(gadget_database, consumable_database):
                 new_consumable = [item_id, con_name, con_desc, con_amount, con_rarity]
                 consumable_database.append(new_consumable)
 
+    print("Item telah berhasil ditambahkan ke database!")
     return gadget_database, consumable_database
 
 
@@ -63,16 +66,22 @@ def add_item(gadget_database, consumable_database):
 # Deletes an existing item from the database
 
 # Dictionary
+# modified_gadget_database : list
+# modified_consumable_database : list
+# gadget_modified : int
+# consum_modified : int
 # item_id : str
 # confirm : str
 # item_index : int
+# return_list : list
+# tracker : int
 
 # Algorithm
 def delete_conf(database, item_index):
     confirm = input(f"Apakah Anda yakin ingin menghapus {database[item_index][1]} (y/n)? ")
     if confirm == "y":
         del database[item_index]
-        print("Item telah berhasil dihapus!")
+        print("Item telah berhasil dihapus dari database!")
         return database, 1
     else:
         return [], 0  # Program indicates nothing happened if user selects "n"

@@ -3,9 +3,9 @@
 
 # Dependencies
 import argparse
+import cari_item
 import item_interaction
 import database_io
-import cari_item
 
 # Dictionary
 #
@@ -38,12 +38,42 @@ gadget_borrow_hist_data = []
 gadget_return_hist_data = []
 user_data = []
 
-datas_gadget_pinjam = {'nama': [], 'jumlah': []}
-pernah_pinjam = False
 id_pinjam, id_kembalian, id_minta = 0, 0, 0
 
+
+def save_csv(consum_datas, consum_hist_datas, gadget_datas,
+             gadget_borrow_hist_datas, gadget_return_hist_datas, user_datas):
+    consum_datas.append(consum_header)
+    consum_hist_datas.append(consum_hist_header)
+    gadget_datas.append(gadget_header)
+    gadget_borrow_hist_datas.append(gadget_borrow_header)
+    gadget_return_hist_datas.append(gadget_return_header)
+    user_datas.append(user_header)
+
+    consum_datas += consumable
+    consum_hist_datas += consumable_history
+    gadget_datas += gadget
+    gadget_borrow_hist_datas += gadget_borrow_history
+    gadget_return_hist_datas += gadget_return_history
+    user_datas += user
+
+    consum_csv = database_io.revert_data_type(consum_datas)
+    consum_hist_csv = database_io.revert_data_type(consum_hist_datas)
+    gadget_csv = database_io.revert_data_type(gadget_datas)
+    gadget_borrow_csv = database_io.revert_data_type(gadget_borrow_hist_datas)
+    gadget_return_csv = database_io.revert_data_type(gadget_return_hist_datas)
+    user_csv = database_io.revert_data_type(user_datas)
+
+    database_io.save(folder_name, "consumable.csv", consum_csv)
+    database_io.save(folder_name, "consumable_history.csv", consum_hist_csv)
+    database_io.save(folder_name, "gadget.csv", gadget_csv)
+    database_io.save(folder_name, "gadget_borrow_history.csv", gadget_borrow_csv)
+    database_io.save(folder_name, "gadget_return_history.csv", gadget_return_csv)
+    database_io.save(folder_name, "user.csv", user_csv)
+
+
 print("Selamat datang ke sistem penyimpanan item Doremonangis!")
-print('''  
+print("""  
             ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣠⣤⣴⣶⣶⣶⣶⣶⠶⣶⣤⣤⣀⠀⠀⠀⠀⠀⠀
             ⠀⠀⠀⠀⠀⠀⠀⢀⣤⣾⣿⣿⣿⠁⠀⢀⠈⢿⢀⣀⠀⠹⣿⣿⣿⣦⣄⠀⠀⠀
             ⠀⠀⠀⠀⠀⠀⣴⣿⣿⣿⣿⣿⠿⠀⠀⣟⡇⢘⣾⣽⠀⠀⡏⠉⠙⢛⣿⣷⡖⠀
@@ -54,7 +84,7 @@ print('''
             ⢮⠀⠀⠀⠀⣿⣿⣆⠀⠀⠻⣿⡿⠛⠉⠉⠁⠀⠉⠉⠛⠿⣿⣿⠟⠁⠀⣼⠃⠀
             ⠈⠓⠶⣶⣾⣿⣿⣿⣧⡀⠀⠈⠒⢤⣀⣀⡀⠀⠀⣀⣀⡠⠚⠁⠀⢀⡼⠃⠀⠀
             ⠀⠀⠀⠈⢿⣿⣿⣿⣿⣿⣷⣤⣤⣤⣤⣭⣭⣭⣭⣭⣥⣤⣤⣤⣴⣟⠁
-            ''')
+""")
 
 while True:
     command = input("Masukkan perintah: ")
@@ -88,38 +118,23 @@ while True:
     elif command == "save":
         folder_name = input("Masukkan nama folder penyimpanan: ")
 
-        consum_data.append(consum_header)
-        consum_hist_data.append(consum_hist_header)
-        gadget_data.append(gadget_header)
-        gadget_borrow_hist_data.append(gadget_borrow_header)
-        gadget_return_hist_data.append(gadget_return_header)
-        user_data.append(user_header)
-
-        consum_data += consumable
-        consum_hist_data += consumable_history
-        gadget_data += gadget
-        gadget_borrow_hist_data += gadget_borrow_history
-        gadget_return_hist_data += gadget_return_history
-        user_data += user
-
-        consum_csv = database_io.revert_data_type(consum_data)
-        consum_hist_csv = database_io.revert_data_type(consum_hist_data)
-        gadget_csv = database_io.revert_data_type(gadget_data)
-        gadget_borrow_csv = database_io.revert_data_type(gadget_borrow_hist_data)
-        gadget_return_csv = database_io.revert_data_type(gadget_return_hist_data)
-        user_csv = database_io.revert_data_type(user_data)
-
-        database_io.save(folder_name, "consumable.csv", consum_csv)
-        database_io.save(folder_name, "consumable_history.csv", consum_hist_csv)
-        database_io.save(folder_name, "gadget.csv", gadget_csv)
-        database_io.save(folder_name, "gadget_borrow_history.csv", gadget_borrow_csv)
-        database_io.save(folder_name, "gadget_return_history.csv", gadget_return_csv)
-        database_io.save(folder_name, "user.csv", user_csv)
-
+        save_csv(consum_data, consum_hist_data, gadget_data,
+                 gadget_borrow_hist_data, gadget_return_hist_data, user_data)
         print(f"Data telah disimpan di folder {folder_name}.")
     elif command == "help":
         pass
     elif command == "exit":
+        do_save = input("Apakah Anda ingin melakukan penyimpanan file?: (y/n) ")
+
+        if do_save not in ("Y", "y", "N", "n"):
+            print("Masukan tidak valid. Harap ulangi!")
+            continue
+        elif do_save in ("Y", "y"):
+            save_csv(consum_data, consum_hist_data, gadget_data,
+                     gadget_borrow_hist_data, gadget_return_hist_data, user_data)
+        else:
+            pass
+
         break
     else:
         print("Command tidak valid! Harap ulangi kembali.")

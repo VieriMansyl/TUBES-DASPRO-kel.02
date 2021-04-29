@@ -1,6 +1,7 @@
 # Library database_io
 # Contains functions and procedures required to handle database input and output from file
 # Contributor : 16520056, 16520086
+# Tester : 16520006
 
 # Dependency
 import os
@@ -150,14 +151,3 @@ def save(folder_name, file_name, data):
         f = open(file_name, "w")  # prepares the file to be written
         f.write(data)
         f.close()
-
-
-# if __name__ == "__main__":
-    # parser = argparse.ArgumentParser()
-    # parser.add_argument("foldername", help="load a folder with the specified name", type=str)
-    # folder = parser.parse_args()
-    # print(folder.foldername)
-    # load(folder.foldername)
-    # test_data = [["id", "nama", "umur", "pinter"], ["a1", "joko", 21, True], ["a2", "budi", 19, False]]
-    # reverted_data = revert_data_type(test_data)
-    # save("test_text", "new_file.csv", reverted_data)
