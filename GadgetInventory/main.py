@@ -5,8 +5,9 @@
 import argparse
 import cari_item
 import item_interaction
-import database_io
 import riwayat_gadget
+import database_io
+import help
 
 # Dictionary
 #
@@ -90,32 +91,32 @@ print("""
 while True:
     command = input("Masukkan perintah: ")
 
-    if command == "register":
+    if command == "reg":
         pass
-    elif command == "login":
+    elif command == "log":
         pass
-    elif command == "cari_item_rarity":
+    elif command == "crare":
         cari_item.carirarity(gadget)
-    elif command == "cari_item_tahun":
+    elif command == "cyear":
         cari_item.caritahun(gadget)
-    elif command == "tambah_item":
-        gadget, consumable  = item_interaction.add_item(gadget, consumable)
-    elif command == "hapus_item":
+    elif command == "add":
+        gadget, consumable = item_interaction.add_item(gadget, consumable)
+    elif command == "delete":
         gadget, consumable = item_interaction.delete_item(gadget, consumable)
-    elif command == "ubah_jumlah_item":
+    elif command == "change":
         gadget, consumable = item_interaction.modify_item_amount(gadget, consumable)
-    elif command == "pinjam_gadget":
-        datas_gadget , buku_hutang_li , history_pinjam , ID_pinjam = pinjam(user_name , datas_gadget , buku_hutang_li , history_pinjam , ID_pinjam)
-    elif command == "kembalikan_gadget":
-        datas_gadget , buku_hutang_li , history_kembalian , ID_kembalian = kembalikan(user_name , datas_gadget , buku_hutang_li , history_kembalian , ID_kembalian)
-    elif command == "minta_consumable":
-        datas_consume , history_minta , ID_minta = minta(user_name , datas_consume , history_minta , ID_minta)
-    elif command == "riwayat_pinjam_gadget":
-        riwayat_gadget.riwayatPinjamGadget(gadget_borrow_history,user,gadget)
-    elif command == "riwayat_pengembalian_gadget":
-        riwayat_gadget.riwayatBalikGadget(gadget_return_history,user,gadget,gadget_borrow_history)
-    elif command == "riwayat_minta_consumable":
-        riwayat_gadget.riwayatConsumable(consumable_history,user,consumable)
+    elif command == "borrow":
+        datas_gadget, buku_hutang_li, history_pinjam, ID_pinjam = pinjam(user_name, datas_gadget, buku_hutang_li, history_pinjam, ID_pinjam)
+    elif command == "return":
+        datas_gadget, buku_hutang_li, history_kembalian, ID_kembalian = kembalikan(user_name, datas_gadget, buku_hutang_li, history_kembalian, ID_kembalian)
+    elif command == "demand":
+        datas_consume, history_minta, ID_minta = minta(user_name, datas_consume, history_minta, ID_minta)
+    elif command == "hborrow":
+        riwayat_gadget.riwayatPinjamGadget(gadget_borrow_history, user, gadget)
+    elif command == "hreturn":
+        riwayat_gadget.riwayatBalikGadget(gadget_return_history, user, gadget, gadget_borrow_history)
+    elif command == "hdemand":
+        riwayat_gadget.riwayatConsumable(consumable_history, user, consumable)
     elif command == "save":
         folder_name = input("Masukkan nama folder penyimpanan: ")
 
