@@ -124,12 +124,12 @@ while True:
     elif command == "help":
         pass
     elif command == "exit":
-        do_save = input("Apakah Anda ingin melakukan penyimpanan file?: (y/n) ")
+        do_save = input("Apakah Anda ingin melakukan penyimpanan file?: (y/n) ").upper()
 
-        if do_save not in ("Y", "y", "N", "n"):
+        if do_save not in ("Y", "N"):
             print("Masukan tidak valid. Harap ulangi!")
             continue
-        elif do_save in ("Y", "y"):
+        elif do_save == "Y":
             save_csv(consum_data, consum_hist_data, gadget_data,
                      gadget_borrow_hist_data, gadget_return_hist_data, user_data)
         else:
