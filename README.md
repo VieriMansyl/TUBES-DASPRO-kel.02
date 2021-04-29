@@ -22,7 +22,7 @@ Pembagian tugas:
 6. Free-for-all
    * __F14__ Load data (Coded :heavy_check_mark: Tested :exclamation:)
    * __F15__ Save data (Coded :heavy_check_mark: Tested :exclamation:)
-   * __F16__ Help (Coded :x: Tested :x:)
+   * __F16__ Help (Coded :heavy_check_mark: Tested :x:)
    * __F17__ Exit (Coded :heavy_check_mark: Tested :heavy_check_mark:)
 
 List of CSV:
