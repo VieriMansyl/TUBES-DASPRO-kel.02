@@ -24,7 +24,7 @@ from datetime import datetime
 # F11 : Melihat riwayat peminjaman gadget
 
 
-def riwayatPinjamGadget (history_pinjam):
+def riwayatPinjamGadget (history_pinjam,user,gadget):
 
     cek = True
     indeks = -5
@@ -71,12 +71,10 @@ def riwayatPinjamGadget (history_pinjam):
             else: # Masukkan selain Y dan N
                 print("Masukan Salah. Silahkan coba lagi.")
 
-# riwayatPinjamGadget(history_pinjam)
-
 
 # F12 : Melihat Riwayat Pengembalian Gadget 
 
-def riwayatBalikGadget (history_kembalian): 
+def riwayatBalikGadget (history_kembalian,user,gadget,history_pinjam): 
     
     cek = True
     indeks = -5
@@ -96,7 +94,7 @@ def riwayatBalikGadget (history_kembalian):
         indeks += 5
         if indeks > len(history_kembalian):
             indeks -= 5
-            panjang = len(history_pinjam) - indeks
+            panjang = len(history_kembalian) - indeks
             cek     = False
         else:
             panjang += 5
@@ -123,13 +121,11 @@ def riwayatBalikGadget (history_kembalian):
             else: 
                 print("Masukan Salah. Silahkan coba lagi.")
 
-# riwayatBalikGadget(history_kembalian)
-
 
 
 # F13 Melihat riwayat pengambilan consumable 
 
-def riwayatConsumable(history_minta):
+def riwayatConsumable(history_minta,user,consumable):
 
     cek = True
     indeks = -5
@@ -173,5 +169,3 @@ def riwayatConsumable(history_minta):
                 break
             else:
                 print("Masukan Salah. Silahkan coba lagi")
-                
-# riwayatConsumable(history_minta)
