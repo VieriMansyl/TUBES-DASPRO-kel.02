@@ -6,6 +6,7 @@ import argparse
 import cari_item
 import item_interaction
 import database_io
+import riwayat_gadget
 
 # Dictionary
 #
@@ -110,11 +111,11 @@ while True:
     elif command == "minta_consumable":
         pass
     elif command == "riwayat_pinjam_gadget":
-        pass
+        riwayat_gadget.riwayatPinjamGadget(gadget_borrow_history,user,gadget)
     elif command == "riwayat_pengembalian_gadget":
-        pass
+        riwayat_gadget.riwayatBalikGadget(gadget_return_history,user,gadget,gadget_borrow_history)
     elif command == "riwayat_minta_consumable":
-        pass
+        riwayat_gadget.riwayatConsumable(consumable_history,user,consumable)
     elif command == "save":
         folder_name = input("Masukkan nama folder penyimpanan: ")
 
