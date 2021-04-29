@@ -173,15 +173,3 @@ def modify_item_amount(gadget_database, consumable_database):
         return gadget_database, modified_consumable_database
     else:
         return gadget_database, consumable_database
-
-
-# Use these for testing!
-# gadget = [["G5", "Car key", "Stolen for the lost boys.", 1, "A", 2010],
-#           ["G6", "Pocket knife", "Carved your name with it!", 1, "B", 2014]]
-# consum = [["C5", "Jumpsuit", "If you need anyone..", 1, "A"],
-#           ["C4", "Strawberry swing", "Wouldn't want to waste a thing..", 2, "S"]]
-
-# if __name__ == "__main__":
-#     modify_item_amount(gadget, consum)
-#     print(f"Gadget : {gadget}")
-#     print(f"Consum : {consum}")
