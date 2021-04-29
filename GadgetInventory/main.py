@@ -99,17 +99,17 @@ while True:
     elif command == "cari_item_tahun":
         cari_item.caritahun(gadget)
     elif command == "tambah_item":
-        gadget, consumable = item_interaction.add_item(gadget, consumable)
+        gadget, consumable  = item_interaction.add_item(gadget, consumable)
     elif command == "hapus_item":
         gadget, consumable = item_interaction.delete_item(gadget, consumable)
     elif command == "ubah_jumlah_item":
         gadget, consumable = item_interaction.modify_item_amount(gadget, consumable)
     elif command == "pinjam_gadget":
-        datas_gadget , buku_hutang_li , history_pinjam , ID_pinjam          = pinjam(user_name , datas_gadget , buku_hutang_li , history_pinjam , ID_pinjam)
+        datas_gadget , buku_hutang_li , history_pinjam , ID_pinjam = pinjam(user_name , datas_gadget , buku_hutang_li , history_pinjam , ID_pinjam)
     elif command == "kembalikan_gadget":
-        datas_gadget , buku_hutang_li , history_kembalian , ID_kembalian    = kembalikan(user_name , datas_gadget , buku_hutang_li , history_kembalian , ID_kembalian)
+        datas_gadget , buku_hutang_li , history_kembalian , ID_kembalian = kembalikan(user_name , datas_gadget , buku_hutang_li , history_kembalian , ID_kembalian)
     elif command == "minta_consumable":
-        datas_consume , history_minta , ID_minta                            = minta(user_name , datas_consume , history_minta , ID_minta)
+        datas_consume , history_minta , ID_minta = minta(user_name , datas_consume , history_minta , ID_minta)
     elif command == "riwayat_pinjam_gadget":
         riwayat_gadget.riwayatPinjamGadget(gadget_borrow_history,user,gadget)
     elif command == "riwayat_pengembalian_gadget":
