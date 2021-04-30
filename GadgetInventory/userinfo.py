@@ -2,9 +2,6 @@
 # Fungsi login dan daftar
 # Kontributor : 16520076
 
-# Dictionary
-# id, nama, username, password, alamat, role : str
-
 # Fungsi used_name
 # Membuat nama yg di-input otomatis kapital
 # Parameter : word
@@ -25,26 +22,54 @@ def used_name(word):
         real_name = "".join(nameArr)
         return(real_name)
 
-# Prosedure username_kembar
+# Procedure is_underscore
+# Menge-cek apakah ada underscore
+# Parameter : x
+def is_underscore(x):
+    for char in x:
+        if (char == "_"):
+            return True
+
+# Procedure is_first_all_spaces
+# Menge-cek apakah karakter pertama atau terakhir username berupa spasi atau terdapat 2 spasi atau lebih yang berurutan
+# Parameter : x
+def is_first_all_spaces(x):
+    for i in range (len(x)) :
+        if (x[0] == " ") or (x[(len(x))-1] == " "):
+            return True
+    for i in range (len(x)) :
+        if (x[i] == " "):
+            if x[i + 1] == " ":
+                return True
+            
+# Procedure username_kembar
 # Menge-cek apakah ada username kembar
 # Parameter : x
-def username_kembar(x, users_data):
-    for i in range (len(users_data)):
-        if x == users_data[i][1]:
-            return False
-        
+def username_kembar(x):
+        for i in range (len(users_data)):
+            if (x == users_data[i][2]):
+                return False
+
+
 # Fungsi register
 # Menambahkan user baru ke database
 # Parameter : users_data
-# Return value : users_data , role
+# Return value : users_data
+
+# KAMUS LOKAL
+# users_data : list of list
+# new_user : list
+# nama, username, password, alamat, role, identity : str
 def register(users_data) :
     nama = input("Masukkan nama : ")
-    # Huruf kapital otomatis
-    used_name(nama)
+    # Nama tidak boleh kosong
+    while (nama == ""):
+        print("Nama tidak boleh kosong !")
+        nama = input("Masukkan nama : ")
 
     username = input("Masukkan username : ")
-    # Cek Username tidak boleh kosong & ada yg kembar
-    while (username == "") or (username_kembar(username, users_data) == False):
+    # Username tidak boleh kosong / ada yg kembar / karakter pertama atau terakhir berupa spasi / terdapat 2 spasi atau lebih yang berurutan
+    while (username == "") or (username_kembar(username) == False) or (is_underscore(username) == True) or (is_first_all_spaces(username)==True):
         print("Username invalid, masukkan username lain !")
         username = input("Masukkan username : ")
 
@@ -61,7 +86,7 @@ def register(users_data) :
         alamat = input("Masukkan alamat : ")
 
     role = "user"
-    identity = ("U" + str(len(users_data)+1))
+    identity = ("U" + str(len(users_data)))
     
     new_user = [identity, used_name(nama), username,  password, alamat, role]
 
@@ -79,8 +104,8 @@ def login(users_data):
 
     password_benar = ""
     for i in range (len(users_data)) :
-        if users_data[i][1] == username:
-            password_benar = users_data[i][4]
+        if users_data[i][2] == username:
+            password_benar = users_data[i][3]
     
     if (password_benar == ""): # Username not found
         print("Username belum terdaftar !")
@@ -90,5 +115,5 @@ def login(users_data):
             password = input("Masukkan password : ")
         else :
             print("Selamat login berhasil !")
-    
+
     return username
