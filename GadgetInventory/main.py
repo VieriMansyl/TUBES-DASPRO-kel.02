@@ -7,7 +7,7 @@ import cari_item
 import item_interaction
 import riwayat_gadget
 import database_io
-import help
+import help_log
 import userinfo
 
 # Dictionary
