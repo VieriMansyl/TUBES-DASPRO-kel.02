@@ -107,11 +107,11 @@ while True:
     elif command == "change":
         gadget, consumable = item_interaction.modify_item_amount(gadget, consumable)
     elif command == "borrow":
-        datas_gadget, buku_hutang_li, history_pinjam, ID_pinjam = pinjam(user_name, datas_gadget, buku_hutang_li, history_pinjam, ID_pinjam)
+        gadget, buku_hutang_li, gadget_borrow_history, ID_pinjam = pinjam(user_name, gadget, buku_hutang_li, gadget_borrow_history, ID_pinjam)
     elif command == "return":
-        datas_gadget, buku_hutang_li, history_kembalian, ID_kembalian = kembalikan(user_name, datas_gadget, buku_hutang_li, history_kembalian, ID_kembalian)
+        gadget, buku_hutang_li, gadget_return_history, ID_kembalian = kembalikan(user_name, gadget, buku_hutang_li, gadget_return_history, ID_kembalian)
     elif command == "demand":
-        datas_consume, history_minta, ID_minta = minta(user_name, datas_consume, history_minta, ID_minta)
+        consumable, history_minta, ID_minta = minta(user_name, consumable, history_minta, ID_minta)
     elif command == "hborrow":
         riwayat_gadget.riwayatPinjamGadget(gadget_borrow_history, user, gadget)
     elif command == "hreturn":
