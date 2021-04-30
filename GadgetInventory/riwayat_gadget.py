@@ -55,7 +55,7 @@ def riwayatPinjamGadget (history_pinjam,user,gadget):
 
             print()
             print("Id peminjaman\t\t: ", history_pinjam[i][0])   
-            print("Nama pengambil\t\t: ", list(filter(lambda x: x[0] == history_pinjam[i][1], user))[0][2])  # Mengambil nama peminjam dari id user melalui data peminjaman
+            print("Nama pengambil\t\t: ", list(filter(lambda x: x[0] == history_pinjam[i][1], user))[0][1])  # Mengambil nama peminjam dari id user melalui data peminjaman
             print("Nama Gadget\t\t: ", list(filter(lambda x: x[0] == history_pinjam[i][2], gadget))[0][1])   # Mengambil nama gadget dari id gadget melalui data peminjaman
             print("Tanggal peminjaman\t: ", history_pinjam[i][3])
             print("Jumlah\t\t\t: ", history_pinjam[i][4])
@@ -107,7 +107,7 @@ def riwayatBalikGadget (history_kembalian,user,gadget,history_pinjam):
             peminjaman = list(filter(lambda x: x[0] == history_kembalian[i][1], history_pinjam))[0]   # Mengambil data peminjaman dari list data pengembalian (history_kembalian)
             print()
             print("Id pengembalian\t\t: ", history_kembalian[i][0])
-            print ("Nama pengambil\t\t: ", list(filter(lambda x: x[0] == peminjaman[1], user))[0][2])   # Mengambil nama peminjam dari id user dari data peminjaman
+            print ("Nama pengambil\t\t: ", list(filter(lambda x: x[0] == peminjaman[1], user))[0][1])   # Mengambil nama peminjam dari id user dari data peminjaman
             print("Nama Gadget\t\t: ", list(filter(lambda x: x[0] == peminjaman[2], gadget))[0][1])     # Mengambil nama gadget dari id gadget dari data peminjaman
             print("Tanggal Pengembalian\t: ", history_kembalian[i][2])
             print()
@@ -155,7 +155,7 @@ def riwayatConsumable(history_minta,user,consumable):
 
             print()
             print("Id Pengambilan\t\t: ",history_minta[i][0])
-            print("Nama Pengambil\t\t: ", list(filter(lambda x: x[0] == history_minta[i][1], user))[0][2])        # Mengambil nama pengambil dari id user dari data peminjaman      
+            print("Nama Pengambil\t\t: ", list(filter(lambda x: x[0] == history_minta[i][1], user))[0][1])        # Mengambil nama pengambil dari id user dari data peminjaman      
             print("Nama Consumable\t\t: ", list(filter(lambda x: x[0] == history_minta[i][2], consumable))[0][1]) # Mengambil nama consumable dari id consumable dari data "consumable"
             print("Tanggal Pengambilan\t: ", history_minta[i][3])
             print("Jumlah\t\t\t: ", history_minta[i][4])
