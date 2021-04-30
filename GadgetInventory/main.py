@@ -3,12 +3,15 @@
 
 # Dependencies
 import argparse
+import database_io
+import userinfo
 import cari_item
 import item_interaction
+import demand_Gadget_Consumable
 import riwayat_gadget
-import database_io
 import help_log
-import userinfo
+
+
 
 # Dictionary
 #
@@ -93,7 +96,7 @@ while True:
     command = input("Masukkan perintah: ")
 
     if command == "reg":
-        userinfo.register(user)
+        user , role = userinfo.register(user)
     elif command == "log":
         userinfo.login(user)
     elif command == "crare":
@@ -107,11 +110,11 @@ while True:
     elif command == "change":
         gadget, consumable = item_interaction.modify_item_amount(gadget, consumable)
     elif command == "borrow":
-        gadget, buku_hutang_li, gadget_borrow_history, ID_pinjam = pinjam(user_name, gadget, buku_hutang_li, gadget_borrow_history, ID_pinjam)
+        gadget, buku_hutang_li, gadget_borrow_history, ID_pinjam = demand_Gadget_Consumable.pinjam(user_name, gadget, buku_hutang_li, gadget_borrow_history, ID_pinjam)
     elif command == "return":
-        gadget, buku_hutang_li, gadget_return_history, ID_kembalian = kembalikan(user_name, gadget, buku_hutang_li, gadget_return_history, ID_kembalian)
+        gadget, buku_hutang_li, gadget_return_history, ID_kembalian = demand_Gadget_Consumable.kembalikan(user_name, gadget, buku_hutang_li, gadget_return_history, ID_kembalian)
     elif command == "demand":
-        consumable, consumable_history, ID_minta = minta(user_name, consumable, consumable_history, ID_minta)
+        consumable, consumable_history, ID_minta = demand_Gadget_Consumable.minta(user_name, consumable, consumable_history, ID_minta)
     elif command == "hborrow":
         riwayat_gadget.riwayatPinjamGadget(gadget_borrow_history, user, gadget)
     elif command == "hreturn":
