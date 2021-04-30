@@ -111,7 +111,7 @@ while True:
     elif command == "return":
         gadget, buku_hutang_li, gadget_return_history, ID_kembalian = kembalikan(user_name, gadget, buku_hutang_li, gadget_return_history, ID_kembalian)
     elif command == "demand":
-        consumable, history_minta, ID_minta = minta(user_name, consumable, history_minta, ID_minta)
+        consumable, consumable_history, ID_minta = minta(user_name, consumable, consumable_history, ID_minta)
     elif command == "hborrow":
         riwayat_gadget.riwayatPinjamGadget(gadget_borrow_history, user, gadget)
     elif command == "hreturn":
