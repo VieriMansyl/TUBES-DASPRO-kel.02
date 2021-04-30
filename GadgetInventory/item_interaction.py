@@ -44,6 +44,7 @@ def add_item(gadget_database, consumable_database):
                 else:
                     new_gadget = [item_id, gad_name, gad_desc, gad_amount, gad_rarity, gad_year]
                     gadget_database.append(new_gadget)
+        print("Item telah berhasil ditambahkan ke database!")
     else:  # Item is a consumable
         con_name = input("Masukkan nama consumable: ")
         con_desc = input("Masukkan deskripsi consumable: ")
@@ -57,8 +58,7 @@ def add_item(gadget_database, consumable_database):
             else:
                 new_consumable = [item_id, con_name, con_desc, con_amount, con_rarity]
                 consumable_database.append(new_consumable)
-
-    print("Item telah berhasil ditambahkan ke database!")
+        print("Item telah berhasil ditambahkan ke database!")
     return gadget_database, consumable_database
 
 
