@@ -36,7 +36,7 @@ def username_kembar(x, users_data):
 # Fungsi register
 # Menambahkan user baru ke database
 # Parameter : users_data
-# Return value : identity, used_name(nama), username,  password, alamat, role
+# Return value : users_data , role
 def register(users_data) :
     nama = input("Masukkan nama : ")
     # Huruf kapital otomatis
@@ -69,7 +69,7 @@ def register(users_data) :
     
     print(f"User {username} berhasil register ke kantong ajaib." )
     
-    return users_data
+    return users_data , role
 
 # Procedure Login
 # Parameter : users_data
@@ -90,3 +90,5 @@ def login(users_data):
             password = input("Masukkan password : ")
         else :
             print("Selamat login berhasil !")
+    
+    return username
