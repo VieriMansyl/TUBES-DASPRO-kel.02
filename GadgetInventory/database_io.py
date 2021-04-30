@@ -105,12 +105,11 @@ def load(folder_name):
             # Files from os.walk is unordered and random every time. Sorting must be done to
             # ensure correct assignment by the main program.
             files.sort()
-            csv_files.append(files)
+            csv_files += files
 
         for file in csv_files:
-            for i in range(len(file)):
-                data_list = csv_parse(folder_name, file[i])
-                databases.append(data_list)
+            data_list = csv_parse(folder_name, file)
+            databases.append(data_list)
 
         return databases
     else:
