@@ -1,7 +1,7 @@
 def help(user_name):
     if user_name.upper() == "ADMIN":
         print("===============================================HELP==============================================")
-        print("|  Command             |    Input    |                                                          |")
+        print("|  Command             |    Input    |                       Keterangan                         |")
         print("=================================================================================================")
         print("|  Register            |   reg       | melakukan registrasi user baru                           |")
         print("|  Login               |   log       | melakukan login ke dalam sistem                          |")
@@ -18,10 +18,18 @@ def help(user_name):
         print("|  Exit                |   exit      | keluar dari program                                      |")
         print("=================================================================================================")
 
+    elif not user_name:
+        print("===============================================HELP==============================================")
+        print("|  Command             |    Input    |                       Keterangan                         |")
+        print("=================================================================================================")
+        print("|  Login               |   log       | melakukan login ke dalam sistem                          |")
+        print("|  Help                |   help      | menampilkan panduan penggunaan sistem                    |")
+        print("|  Exit                |   exit      | keluar dari program                                      |")
+        print("=================================================================================================")
 
     else:
         print("===============================================HELP==============================================")
-        print("|  Command             |    Input    |                                                          |")
+        print("|  Command             |    Input    |                       Keterangan                         |")
         print("=================================================================================================")
         print("|  Login               |   log       | melakukan login ke dalam sistem                          |")
         print("|  Cari Rarity         |   crare     | melakukan pencarian item berdasarkan rarity              |")
