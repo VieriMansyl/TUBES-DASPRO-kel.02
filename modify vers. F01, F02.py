@@ -86,7 +86,7 @@ def register(users_data) :
         alamat = input("Masukkan alamat : ")
 
     role = "user"
-    identity = ("U" + str(len(users_data)+1))
+    identity = ("U" + str(len(users_data)))
     
     new_user = [identity, used_name(nama), username,  password, alamat, role]
 
