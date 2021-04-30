@@ -17,7 +17,14 @@ import help_log
 # Algorithm
 parser = argparse.ArgumentParser()
 parser.add_argument("foldername", help="load a folder with the specified name", type=str)
-folder = parser.parse_args()
+folder = ""
+
+try:
+    folder = parser.parse_args()
+except SystemExit:
+    print("Tidak ada nama file yang diberikan!")
+    exit()
+
 consumable_raw, consumable_history_raw, gadget_raw, gadget_borrow_history_raw, \
     gadget_log_raw, gadget_return_history_raw, user_raw = database_io.load(folder.foldername)
 
