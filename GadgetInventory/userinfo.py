@@ -94,26 +94,28 @@ def register(users_data) :
     
     print(f"User {username} berhasil register ke kantong ajaib." )
     
-    return users_data , role
+    return users_data
 
 # Procedure Login
 # Parameter : users_data
 def login(users_data):
     username = input("Masukkan username : ")
     password = input("Masukkan password : ")
+    role = ""
 
     password_benar = ""
     for i in range (len(users_data)) :
         if users_data[i][2] == username:
             password_benar = users_data[i][3]
+            role += users_data[i][5]
     
     if (password_benar == ""): # Username not found
         print("Username belum terdaftar !")
+        return "", ""
     else:
         while (password) != (password_benar):
             print("Upps, password salah silakan coba lagi !")
             password = input("Masukkan password : ")
         else :
             print("Selamat login berhasil !")
-
-    return username
+            return username, role
