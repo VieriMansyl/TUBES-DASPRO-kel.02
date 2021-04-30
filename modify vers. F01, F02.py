@@ -62,7 +62,11 @@ def is_username_kembar(x):
 # nama, username, password, alamat, role, identity : str
 def register(users_data) :
     nama = input("Masukkan nama : ")
-   
+    # Nama tidak boleh kosong
+    while (nama == ""):
+        print("Nama tidak boleh kosong !")
+        nama = input("Masukkan nama : ")
+        
     username = input("Masukkan username : ")
     # Username tidak boleh kosong / ada yg kembar / karakter pertama atau terakhir berupa spasi / terdapat 2 spasi atau lebih yang berurutan
     while (username == "") or (is_username_kembar(username) == True) or (is_underscore(username) == True) or (is_first_all_spaces(username)==True):
