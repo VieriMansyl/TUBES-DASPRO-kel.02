@@ -8,6 +8,7 @@ import item_interaction
 import riwayat_gadget
 import database_io
 import help
+import userinfo
 
 # Dictionary
 #
@@ -92,9 +93,9 @@ while True:
     command = input("Masukkan perintah: ")
 
     if command == "reg":
-        pass
+        userinfo.register(user)
     elif command == "log":
-        pass
+        userinfo.login(user)
     elif command == "crare":
         cari_item.carirarity(gadget)
     elif command == "cyear":
