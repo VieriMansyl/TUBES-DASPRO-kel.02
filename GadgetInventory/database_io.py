@@ -151,3 +151,5 @@ def save(folder_name, file_name, data):
         f = open(file_name, "w")  # prepares the file to be written
         f.write(data)
         f.close()
+
+    os.chdir("..")
