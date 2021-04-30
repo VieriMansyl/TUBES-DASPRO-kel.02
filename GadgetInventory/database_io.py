@@ -67,6 +67,11 @@ def change_data_type(data_type, database):
                         database_copy[j][i] = True
                     else:
                         database_copy[j][i] = False
+    elif data_type == "gadget_log":
+        for j in range(len(database_copy)):
+            for i in range(2):
+                if i == 1:
+                    database_copy[j][i] = int(database_copy[j][i])
     elif data_type == "consum_history":
         for j in range(len(database_copy)):
             for i in range(5):
