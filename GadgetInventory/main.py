@@ -107,7 +107,7 @@ def save_csv(consum_datas, consum_hist_datas, gadget_datas, gadget_borrow_hist_d
 
 print("=================================================================================================")
 print("                     Selamat datang ke sistem penyimpanan item Doremonangis!                     ")
-
+print("=================================================================================================")
 while True:
     command = input("\nMasukkan perintah: ")
 
