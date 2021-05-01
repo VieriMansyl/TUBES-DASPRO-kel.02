@@ -36,16 +36,16 @@
 
 
 #pinjam                     : borrow gadget <execute module F08>
-#parameter                  : user_name , datas_gadget , buku_hutang_li , history_pinjam , ID_pinjam
-#return value               : datas_gadget , buku_hutang_li , history_pinjam , ID_pinjam
+#parameter                  : user_name , identity , datas_gadget , buku_hutang_li , gadget_borrow_history
+#return value               : datas_gadget , buku_hutang_li , gadget_borrow_history
 
 #kembalikan                 : return gadget <execute module F09>
-#parameter                  : user_name , datas_gadget , buku_hutang_li , history_kembalian , ID_kembalian
-#return value               : datas_gadget , buku_hutang_li , history_kembalian , ID_kembalian
+#parameter                  : user_name , user_identity , datas_gadget , buku_hutang_li , gadget_borrow_history , gadget_return_history
+#return value               : datas_gadget , buku_hutang_li , gadget_return_history
 
 #minta                      : demand consumable <execute module F10>
-#parameter                  : user_name , datas_consume , history_minta , ID_minta
-#return value               : datas_consume , history_minta , ID_minta
+#parameter                  : user_name , datas_consume , history_minta
+#return value               : datas_consume , history_minta
 
 
 def dic_to_li_buku_hutang(buku_hutang_dic):
@@ -207,7 +207,7 @@ def validasi_mintaconsumable(datas_consume_id , datas_consume_jumlah):          
 
 
 
-def pinjam(user_name , datas_gadget , buku_hutang_li , history_pinjam , ID_pinjam):
+def pinjam(user_name , identity , datas_gadget , buku_hutang_li , gadget_borrow_history):
     #list datas secondary (gadget) -> untuk mengecek keberadaan item gadget
     datas_gadget_id     = [data[0] for data in datas_gadget]
     datas_gadget_jumlah = [data[3] for data in datas_gadget]
@@ -221,7 +221,7 @@ def pinjam(user_name , datas_gadget , buku_hutang_li , history_pinjam , ID_pinja
 
     #gadget tercatat ke buku_hutang_dic
     buku_hutang_dic = li_to_dic_buku_hutang(buku_hutang_li)                                         #konversi buku hutang dari list of list ke dictionaries
-    nama_kode = user_name + "_" + datas_gadget[index_id][1]                                         #deklarasi kode menyesuaikan nama kode dalam buku hutang
+    nama_kode       = user_name + "_" + datas_gadget[index_id][1]                                    #deklarasi kode menyesuaikan nama kode dalam buku hutang
 
     if nama_kode not in buku_hutang_dic['nama_kode']:
         buku_hutang_dic['nama_kode'].append(nama_kode)
@@ -232,25 +232,25 @@ def pinjam(user_name , datas_gadget , buku_hutang_li , history_pinjam , ID_pinja
 
     buku_hutang_li = dic_to_li_buku_hutang(buku_hutang_dic)                                         #konversi buku hutang dari dictionaries ke list of list
 
-    #gadget tercatat ke history_pinjam
-    ID_pinjam += 1
-    new_datas = [ID_pinjam , user_name , datas_gadget[index_id][1] , tanggal_pinjam , jumlah_pinjam]
-    history_pinjam.append(new_datas)
+    #gadget tercatat ke gadget_borrow_history
+    ID_pinjam = len(gadget_borrow_history) + 1
+    data_history = [ID_pinjam , identity , datas_gadget[index_id][0] , tanggal_pinjam , jumlah_pinjam]
+    gadget_borrow_history.append(data_history)
 
-    return datas_gadget , buku_hutang_li , history_pinjam , ID_pinjam
+    return datas_gadget , buku_hutang_li , gadget_borrow_history
 
-def kembalikan(user_name , datas_gadget , buku_hutang_li , history_kembalian , ID_kembalian):
+def kembalikan(user_name , user_identity , datas_gadget , buku_hutang_li , gadget_borrow_history , gadget_return_history):
     #list datas secondary (gadget) -> untuk mengecek keberadaan item gadget
     datas_gadget_name   = [data[1] for data in datas_gadget]
 
     buku_hutang_dic     = li_to_dic_buku_hutang(buku_hutang_li)                                     #konversi buku hutang dari dictionaries ke list of list
-    nama_user           = [nama.split("_")[0] for nama in buku_hutang_dic["nama_kode"]]             #nama user yang tercatat dalam buku hutang (menyesuaikan urutan)
+    nama_user           = [nama.split("_")[0] for nama in buku_hutang_dic["nama_kode"]]            #nama user yang tercatat dalam buku hutang (menyesuaikan urutan)
     gadget_pinjam       = [nama.split("_")[1] for nama in buku_hutang_dic["nama_kode"]]             #gadget pinjaman dari para user (menyesuaikan urutan)
 
     #kasus apabila belum terjadi peminjaman gadget
     if user_name not in nama_user:
         print("Belum ada peminjaman")
-        return datas_gadget , buku_hutang_li , history_kembalian , ID_kembalian
+        return datas_gadget , buku_hutang_li , gadget_return_history
 
     #list gadget yang dipinjam oleh user
     pinjaman_user = {"nama_gadget":[] , "jumlah_pinjaman" : []}                                     #rekapan gadget dan jumlah pinjaman dari seorang user
@@ -266,34 +266,45 @@ def kembalikan(user_name , datas_gadget , buku_hutang_li , history_kembalian , I
     #VALIDASI DATA
     tanggal_return, jumlah_return, index_id = validasi_balikgadget(pinjaman_user)
 
-    print(f"Item {pinjaman_user['nama_gadget'][index_id]} (x{jumlah_return}) telah dikembalikan")
+    gadget_kembalian = pinjaman_user['nama_gadget'][index_id]
 
-    nama_kode               = user_name + "_" + pinjaman_user['nama_gadget'][index_id]              #deklarasi kode menyesuaikan nama kode dalam buku hutang
+    print(f"Item {gadget_kembalian} (x{jumlah_return}) telah dikembalikan")
+
+    nama_kode               = user_name + "_" + gadget_kembalian                                   #deklarasi kode menyesuaikan nama kode dalam buku hutang
     indeks_gadget_pinjaman  = buku_hutang_dic['nama_kode'].index(nama_kode)
 
     #gadget keluar dari buku_hutang_dic
     buku_hutang_dic['jumlah'][indeks_gadget_pinjaman] -= jumlah_return
 
     #gadget kembali ke datas_gadget
-    index_barang            = datas_gadget_name.index(pinjaman_user['nama_gadget'][index_id])       #letak indeks gadget hasil pinjaman pada list gadget
-    datas_gadget[index_barang][3] += jumlah_return                                                  #stok gadget bertambah setelah dikembalikan
+    index_barang            = datas_gadget_name.index(gadget_kembalian)                            #letak indeks gadget hasil pinjaman pada list gadget
+    datas_gadget[index_barang][3] += jumlah_return                                                 #stok gadget bertambah setelah dikembalikan
 
-    #gadget tercatat ke history_kembalian
-    ID_kembalian += 1
-    new_datas = [ID_kembalian , user_name , pinjaman_user['nama_gadget'][index_id] , tanggal_return , jumlah_return]
-    history_kembalian.append(new_datas)
+    #gadget tercatat ke gadget_return_history
+    ID_kembalian        = len(gadget_return_history) + 1
+    id_peminjaman       = [data[0] for data in gadget_borrow_history]
+    data_history_pinjam = [data[1] + "_" + data[2] for data in history_pinjam]
+    nama_kode_identity  = user_identity + "_" + gadget_kembalian
+    indeks_ID_pinjam    = 0
+
+    for i in range(len(history_pinjam)):
+        if data_history_pinjam[i] == nama_kode_identity:
+            indeks_ID_pinjam = i
+
+    data_history        = [ID_kembalian , id_peminjaman[indeks_ID_pinjam] , tanggal_return , jumlah_return]
+    gadget_return_history.append(data_history)
 
     #kondisi ketika gadget telah dikembalikan semuanya
     if buku_hutang_dic['jumlah'][indeks_gadget_pinjaman] == 0 :
-        print(f"Selamat! Item {pinjaman_user['nama_gadget'][index_id]} telah dikembalikan semua!")
+        print(f"Selamat! Item {gadget_kembalian} telah dikembalikan semua!")
         buku_hutang_dic['nama_kode'].remove(nama_kode)                                              #menghapus nama gadget dengan value kosong
         buku_hutang_dic['jumlah'].remove(0)                                                         #menghapus jumlah gadget bernilai 0
 
     buku_hutang_li = dic_to_li_buku_hutang(buku_hutang_dic)                                         #konversi buku hutang dari dictionaries ke list of list
 
-    return datas_gadget , buku_hutang_li , history_kembalian , ID_kembalian
+    return datas_gadget , buku_hutang_li , gadget_return_history
 
-def minta(user_name , datas_consume , history_minta , ID_minta):
+def minta(user_name , datas_consume , history_minta):
     #list datas secondary (consumable)
     datas_consume_id = [data[0] for data in datas_consume]
     datas_consume_jumlah = [data[3] for data in datas_consume]
@@ -303,9 +314,10 @@ def minta(user_name , datas_consume , history_minta , ID_minta):
     print(f"Item {datas_consume[index_id][1]} (x{jumlah_consume}) telah berhasil diambil!")
     datas_consume[index_id][3] -= jumlah_consume                                                                         #consumable terambil dari stok consumable
 
-    #gadget tercatat ke history_kembalian
-    ID_minta += 1
+    #consumable tercatat ke history_minta
+    ID_minta  = len(history_minta) + 1
     new_datas = [ID_minta , user_name , datas_consume[index_id][1] , tanggal_consume , jumlah_consume]
     history_minta.append(new_datas)
 
-    return datas_consume , history_minta , ID_minta
+    return datas_consume , history_minta
+
