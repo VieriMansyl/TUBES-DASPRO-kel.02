@@ -52,7 +52,6 @@ gadget_log_data = []
 gadget_return_hist_data = []
 user_data = []
 
-id_pinjam, id_kembalian, id_minta = 0, 0, 0
 username = ""
 role = ""
 identity = ""
@@ -104,7 +103,7 @@ while True:
 
     if command == "reg":
         if role == "admin":
-            username, identity = userinfo.register(user)
+            user, username, identity = userinfo.register(user)
         else:
             print("Maaf, perintah ini hanya tersedia untuk admin program.")
     elif command == "log":
@@ -136,24 +135,17 @@ while True:
             print("Maaf, perintah ini hanya tersedia untuk admin program.")
     elif command == "borrow":
         if role == "user":
-            gadget, gadget_log, gadget_borrow_history, id_pinjam = item_movement.pinjam(username, gadget, gadget_log,
-                                                                                        gadget_borrow_history,
-                                                                                        id_pinjam)
+            gadget, gadget_log, gadget_borrow_history = item_movement.pinjam(username, identity, gadget, gadget_log, gadget_borrow_history)
         else:
             print("Maaf, perintah ini hanya tersedia untuk user. Silakan login sebagai user (perintah : login).")
     elif command == "return":
         if role == "user":
-            gadget, gadget_log, gadget_return_history, id_kembalian , id_pinjam = item_movement.kembalikan(username, gadget,
-                                                                                               gadget_log,
-                                                                                               gadget_return_history,
-                                                                                               id_kembalian,
-                                                                                               id_pinjam)
+            gadget, gadget_log, gadget_return_history = item_movement.kembalikan(username, identity, gadget, gadget_log, gadget_borrow_history, gadget_return_history)
         else:
             print("Maaf, perintah ini hanya tersedia untuk user. Silakan login sebagai user (perintah : login).")
     elif command == "demand":
         if role == "user":
-            consumable, consumable_history, id_minta = item_movement.minta(username, consumable, consumable_history,
-                                                                           id_minta)
+            consumable, consumable_history = item_movement.minta(username, consumable, consumable_history)
         else:
             print("Maaf, perintah ini hanya tersedia untuk user. Silakan login sebagai user (perintah : login).")
     elif command == "hborrow":
