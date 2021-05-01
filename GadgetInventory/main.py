@@ -12,7 +12,16 @@ import database_io
 import help_log
 
 # Dictionary
-#
+# consumable_raw, consum_header, consumable, consum_data : list
+# consumable_history_raw, consum_hist_header, consumable_history, consum_hist_data : list
+# gadget_raw, gadget_header, gadget, gadget_data : list
+# gadget_borrow_history_raw, gadget_borrow_header, gadget_borrow_history, gadget_borrow_hist_data : list
+# gadget_log_raw, gadget_log_header, gadget_log, gadget_log_data : list
+# gadget_return_history_raw, gadget_return_header, gadget_return_history, gadget_return_hist_data : list
+# user_raw, user_header, user, user_data : list
+# username, role, identity : str
+# save_csv : function
+# command : str
 
 # Algorithm
 parser = argparse.ArgumentParser()
@@ -95,15 +104,16 @@ def save_csv(consum_datas, consum_hist_datas, gadget_datas, gadget_borrow_hist_d
 
     print(f"Data telah disimpan di folder {folder_name}.")
 
+
 print("=================================================================================================")
-print("              Selamat datang ke sistem penyimpanan item Doremonangis!                            ")
+print("                     Selamat datang ke sistem penyimpanan item Doremonangis!                     ")
 
 while True:
     command = input("\nMasukkan perintah: ")
 
     if command == "reg":
         if role == "admin":
-            user, username, identity = userinfo.register(user)
+            user = userinfo.register(user)
         else:
             print("Maaf, perintah ini hanya tersedia untuk admin program.")
     elif command == "log":
