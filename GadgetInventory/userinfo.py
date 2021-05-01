@@ -94,7 +94,7 @@ def register(users_data) :
     
     print(f"User {username} berhasil register ke kantong ajaib." )
     
-    return username
+    return username, role, identity
 
 # Procedure Login
 # Parameter : users_data

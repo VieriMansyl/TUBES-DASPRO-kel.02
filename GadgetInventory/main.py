@@ -55,6 +55,7 @@ user_data = []
 id_pinjam, id_kembalian, id_minta = 0, 0, 0
 username = ""
 role = ""
+identity = ""
 
 
 def save_csv(consum_datas, consum_hist_datas, gadget_datas, gadget_borrow_hist_datas,
@@ -103,11 +104,11 @@ while True:
 
     if command == "reg":
         if role == "admin":
-            username = userinfo.register(user)
+            username, role, identity = userinfo.register(user)
         else:
             print("Maaf, perintah ini hanya tersedia untuk admin program.")
     elif command == "log":
-        username, role = userinfo.login(user)
+        username, role, identity = userinfo.login(user)
     elif command == "crare":
         if not role:
             print("Silakan login terlebih dahulu untuk menggunakan perintah ini (perintah : login).")
