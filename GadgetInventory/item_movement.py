@@ -283,11 +283,11 @@ def kembalikan(user_name , user_identity , datas_gadget , buku_hutang_li , gadge
     #gadget tercatat ke gadget_return_history
     ID_kembalian        = len(gadget_return_history) + 1
     id_peminjaman       = [data[0] for data in gadget_borrow_history]
-    data_history_pinjam = [data[1] + "_" + data[2] for data in history_pinjam]
+    data_history_pinjam = [data[1] + "_" + data[2] for data in gadget_borrow_history]
     nama_kode_identity  = user_identity + "_" + gadget_kembalian
     indeks_ID_pinjam    = 0
 
-    for i in range(len(history_pinjam)):
+    for i in range(len(gadget_borrow_history)):
         if data_history_pinjam[i] == nama_kode_identity:
             indeks_ID_pinjam = i
 
