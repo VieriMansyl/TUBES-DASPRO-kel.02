@@ -103,7 +103,7 @@ while True:
 
     if command == "reg":
         if role == "admin":
-            user = userinfo.register(user)
+            username = userinfo.register(user)
         else:
             print("Maaf, perintah ini hanya tersedia untuk admin program.")
     elif command == "log":
