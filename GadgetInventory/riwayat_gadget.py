@@ -109,6 +109,7 @@ def riwayatBalikGadget (history_kembalian,user,gadget,history_pinjam):
             print ("Nama pengambil\t\t: ", list(filter(lambda x: x[0] == peminjaman[1], user))[0][1])   # Mengambil nama peminjam dari id user dari data peminjaman
             print("Nama Gadget\t\t: ", list(filter(lambda x: x[0] == peminjaman[2], gadget))[0][1])     # Mengambil nama gadget dari id gadget dari data peminjaman
             print("Tanggal Pengembalian\t: ", history_kembalian[i][2])
+            print("Jumlah\t\t\t: ", history_kembalian[i][3])
             print()
 
         while command != "Y" or command != "N" and not(cek_command):
