@@ -142,10 +142,11 @@ while True:
             print("Maaf, perintah ini hanya tersedia untuk user. Silakan login sebagai user (perintah : login).")
     elif command == "return":
         if role == "user":
-            gadget, gadget_log, gadget_return_history, id_kembalian = item_movement.kembalikan(username, gadget,
+            gadget, gadget_log, gadget_return_history, id_kembalian , id_pinjam = item_movement.kembalikan(username, gadget,
                                                                                                gadget_log,
                                                                                                gadget_return_history,
-                                                                                               id_kembalian)
+                                                                                               id_kembalian,
+                                                                                               id_pinjam)
         else:
             print("Maaf, perintah ini hanya tersedia untuk user. Silakan login sebagai user (perintah : login).")
     elif command == "demand":
