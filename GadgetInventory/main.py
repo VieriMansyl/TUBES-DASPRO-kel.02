@@ -174,6 +174,14 @@ while True:
         if role:
             save_csv(consum_data, consum_hist_data, gadget_data, gadget_borrow_hist_data,
                      gadget_log_data, gadget_return_hist_data, user_data)
+            
+            consum_data = []
+            consum_hist_data = []
+            gadget_data = []
+            gadget_borrow_hist_data = []
+            gadget_log_data = []
+            gadget_return_hist_data = []
+            user_data = []
         else:
             print("Silakan login terlebih dahulu untuk menggunakan perintah ini (perintah : login).")
     elif command == "help":
