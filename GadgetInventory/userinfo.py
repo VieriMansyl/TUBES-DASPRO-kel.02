@@ -108,8 +108,8 @@ def login(users_data):
     for i in range (len(users_data)) :
         if users_data[i][2] == username:
             password_benar = users_data[i][3]
-            role = users_data[i][5]
-            identity = users_data[i][0]
+            role += users_data[i][5]
+            identity += users_data[i][0]
     
     if (password_benar == ""): # Username not found
         print("Username belum terdaftar !")
