@@ -59,14 +59,9 @@ def change_data_type(data_type, database):
                     database_copy[j][i] = int(database_copy[j][i])
     elif data_type == "gadget_borrow":
         for j in range(len(database_copy)):
-            for i in range(6):
+            for i in range(5):
                 if i == 4:
                     database_copy[j][i] = int(database_copy[j][i])
-                elif i == 5:
-                    if database_copy[j][i] == "True":
-                        database_copy[j][i] = True
-                    else:
-                        database_copy[j][i] = False
     elif data_type == "gadget_log":
         for j in range(len(database_copy)):
             for i in range(2):
@@ -77,7 +72,7 @@ def change_data_type(data_type, database):
             for i in range(5):
                 if i == 4:
                     database_copy[j][i] = int(database_copy[j][i])
-    else:  # data_type == "user" or data_type == "gadget_return"
+    else:  # data_type == "user" or data_type == "gadget_return" or data_type == "gadget_borrow"
         pass
 
     return database_copy
