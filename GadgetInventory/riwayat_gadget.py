@@ -25,10 +25,12 @@ from datetime import datetime
 '''
 #yg ada
 data_history        = [ID_kembalian , id_peminjaman[indeks_ID_pinjam] , tanggal_return , jumlah_return]
-user            = [identity, nama , username,  password, alamat, role]
+user                = [identity, nama , username,  password, alamat, role]
 #yg pengen
-new_datas = [ID_kembalian , user_name , pinjaman_user['nama_gadget'][index_id] , tanggal_return , jumlah_return]
+new_datas           = [ID_kembalian , user_name , pinjaman_user['nama_gadget'][index_id] , tanggal_return , jumlah_return]
 '''
+
+
 def konversi_history_pinjam(history_pinjam , user, gadget):
     cek_identity = [data[0] for data in user]
     cek_username = [data[2] for data in user]
@@ -42,8 +44,6 @@ def konversi_history_pinjam(history_pinjam , user, gadget):
         indeks = id_gadget.index(history_pinjam[i][2])
         history_pinjam[i][2] = nama_gadget[indeks]
     return history_pinjam
-
-
 
 def riwayatPinjamGadget (history_pinjam,user,gadget):
 
