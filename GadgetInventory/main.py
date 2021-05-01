@@ -95,11 +95,11 @@ def save_csv(consum_datas, consum_hist_datas, gadget_datas, gadget_borrow_hist_d
 
     print(f"Data telah disimpan di folder {folder_name}.")
 
-
-print("Selamat datang ke sistem penyimpanan item Doremonangis!")
+print("=================================================================================================")
+print("              Selamat datang ke sistem penyimpanan item Doremonangis!                            ")
 
 while True:
-    command = input("Masukkan perintah: ")
+    command = input("\nMasukkan perintah: ")
 
     if command == "reg":
         if role == "admin":
@@ -170,7 +170,7 @@ while True:
         else:
             print("Maaf, perintah ini hanya tersedia untuk admin program.")
     elif command == "save":
-        if not role:
+        if role:
             save_csv(consum_data, consum_hist_data, gadget_data, gadget_borrow_hist_data,
                      gadget_log_data, gadget_return_hist_data, user_data)
         else:
