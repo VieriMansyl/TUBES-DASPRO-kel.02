@@ -1,4 +1,17 @@
-#F03
+# Program untuk mencari data
+# Coder : 16520356
+
+# KAMUS 
+# datapinjam , databalik, dataconsumable = Array of Data
+# rarity, kategori = string
+# tahun = integer
+# jumlahdata = integer
+# carirarity, caritahun = procedure
+
+# ALGORITMA
+########################## F03 = mencari data rarity ####################################
+
+# gadget = parameter
 def carirarity(gadget) :
     #menerima input berupa rarity
     rarity = input("Masukkan rarity: ")
@@ -28,7 +41,9 @@ def carirarity(gadget) :
         if jumlahdata == 0 :
             print("Tidak ada gadget yang ditemukan")
 
-# F04 
+########################## F04 = mencari data tahun ####################################
+
+# gadget = parameter
 def caritahun(gadget) :
     #menerima input berupa tahun dan kategori
     tahun = int(input("Masukkan tahun: "))
