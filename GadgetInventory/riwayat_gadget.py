@@ -22,28 +22,6 @@ from datetime import datetime
 
 
 # F11 : Melihat riwayat peminjaman gadget
-'''
-#yg ada
-data_history        = [ID_kembalian , id_peminjaman[indeks_ID_pinjam] , tanggal_return , jumlah_return]
-user                = [identity, nama , username,  password, alamat, role]
-#yg pengen
-new_datas           = [ID_kembalian , user_name , pinjaman_user['nama_gadget'][index_id] , tanggal_return , jumlah_return]
-'''
-
-
-def konversi_history_pinjam(history_pinjam , user, gadget):
-    cek_identity = [data[0] for data in user]
-    cek_username = [data[2] for data in user]
-    for i in range(len(history_pinjam)):
-        indeks = cek_identity.index(history_pinjam[i][1])
-        history_pinjam[i][1] = cek_username[indeks]
-    
-    id_gadget   = [data[0] for data in gadget]
-    nama_gadget = [data[1] for data in gadget]
-    for i in range(len(gadget)):
-        indeks = id_gadget.index(history_pinjam[i][2])
-        history_pinjam[i][2] = nama_gadget[indeks]
-    return history_pinjam
 
 def riwayatPinjamGadget (history_pinjam,user,gadget):
 
@@ -52,7 +30,6 @@ def riwayatPinjamGadget (history_pinjam,user,gadget):
     panjang = 0
     command = "Y"
 
-    history_pinjam = konversi_history_pinjam(history_pinjam, user, gadget)
     # Untuk mensorting descending (dari besar ke kecil, dari tanggal dan tahun dari yang paling baru) 
     # Menggunakan import time, datetime, dan fungsi time tuple
     history_pinjam.sort(key = lambda x: time.mktime(datetime.strptime(x[3], '%d/%m/%Y').timetuple()), reverse=True)
