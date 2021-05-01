@@ -44,8 +44,8 @@ def is_first_all_spaces(x):
             
 # Procedure username_kembar
 # Menge-cek apakah ada username kembar
-# Parameter : x
-def no_username_kembar(x):
+# Parameter : x, users_data
+def no_username_kembar(x, users_data):
         for i in range (len(users_data)):
             if (x == users_data[i][2]):
                 return False
@@ -69,7 +69,7 @@ def register(users_data) :
 
     username = input("Masukkan username : ")
     # Username tidak boleh kosong / ada yg kembar / karakter pertama atau terakhir berupa spasi / terdapat 2 spasi atau lebih yang berurutan
-    while (username == "") or (no_username_kembar(username) == False) or (is_underscore(username) == True) or (is_first_all_spaces(username)==True):
+    while (username == "") or (no_username_kembar(username, users_data) == False) or (is_underscore(username) == True) or (is_first_all_spaces(username)==True):
         print("Username invalid, masukkan username lain !")
         username = input("Masukkan username : ")
 
