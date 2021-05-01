@@ -145,7 +145,7 @@ while True:
             print("Maaf, perintah ini hanya tersedia untuk user. Silakan login sebagai user (perintah : login).")
     elif command == "demand":
         if role == "user":
-            consumable, consumable_history = item_movement.minta(username, consumable, consumable_history)
+            consumable, consumable_history = item_movement.minta(identity, consumable, consumable_history)
         else:
             print("Maaf, perintah ini hanya tersedia untuk user. Silakan login sebagai user (perintah : login).")
     elif command == "hborrow":

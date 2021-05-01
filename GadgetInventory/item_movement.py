@@ -304,7 +304,7 @@ def kembalikan(user_name , user_identity , datas_gadget , buku_hutang_li , gadge
 
     return datas_gadget , buku_hutang_li , gadget_return_history
 
-def minta(user_name , datas_consume , history_minta):
+def minta(user_identity , datas_consume , history_minta):
     #list datas secondary (consumable)
     datas_consume_id = [data[0] for data in datas_consume]
     datas_consume_jumlah = [data[3] for data in datas_consume]
@@ -316,7 +316,7 @@ def minta(user_name , datas_consume , history_minta):
 
     #consumable tercatat ke history_minta
     ID_minta  = len(history_minta) + 1
-    new_datas = [ID_minta , user_name , datas_consume[index_id][1] , tanggal_consume , jumlah_consume]
+    new_datas = [ID_minta , user_identity , datas_consume[index_id][0] , tanggal_consume , jumlah_consume]
     history_minta.append(new_datas)
 
     return datas_consume , history_minta
