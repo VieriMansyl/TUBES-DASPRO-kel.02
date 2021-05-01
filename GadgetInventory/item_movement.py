@@ -215,22 +215,20 @@ def pinjam(user_name , identity , datas_gadget , buku_hutang_li , gadget_borrow_
     #VALIDASI DATA
     tanggal_pinjam, jumlah_pinjam, index_id = validasi_pinjamgadget(datas_gadget_id , datas_gadget_jumlah)
 
-    #gadget dipinjam dari datas_gadget
-    print(f"Item {datas_gadget[index_id][1]} (x{jumlah_pinjam}) berhasil dipinjam!")
-    datas_gadget[index_id][3] -= jumlah_pinjam
-
-    #gadget tercatat ke buku_hutang_dic
-    buku_hutang_dic = li_to_dic_buku_hutang(buku_hutang_li)                                         #konversi buku hutang dari list of list ke dictionaries
+    #gadget dipinjam dari datas_gadget dan tercatat ke buku_hutang_dic
+    buku_hutang_dic = li_to_dic_buku_hutang(buku_hutang_li)                                          #konversi buku hutang dari list of list ke dictionaries
     nama_kode       = user_name + "_" + datas_gadget[index_id][1]                                    #deklarasi kode menyesuaikan nama kode dalam buku hutang
 
     if nama_kode not in buku_hutang_dic['nama_kode']:
         buku_hutang_dic['nama_kode'].append(nama_kode)
         buku_hutang_dic['jumlah'].append(jumlah_pinjam)
-    else :
-        index_barang = buku_hutang_dic['nama_kode'].index(nama_kode)
-        buku_hutang_dic['jumlah'][index_barang] += jumlah_pinjam
 
-    buku_hutang_li = dic_to_li_buku_hutang(buku_hutang_dic)                                         #konversi buku hutang dari dictionaries ke list of list
+        print(f"Item {datas_gadget[index_id][1]} (x{jumlah_pinjam}) berhasil dipinjam!")
+        datas_gadget[index_id][3] -= jumlah_pinjam
+    else :                                                                                           #user masih memiliki gadget yang ingin dipinjam
+        print(f"Gadget {datas_gadget[index_id][1]} belum dikembalikan seluruhnya. Mohon segera mengembalikannya.")
+
+    buku_hutang_li = dic_to_li_buku_hutang(buku_hutang_dic)                                          #konversi buku hutang dari dictionaries ke list of list
 
     #gadget tercatat ke gadget_borrow_history
     ID_pinjam = len(gadget_borrow_history) + 1
