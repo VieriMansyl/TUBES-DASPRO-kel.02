@@ -62,7 +62,7 @@ def li_to_dic_buku_hutang(buku_hutang_li):
     buku_hutang_dic = {"nama" : [] , "nama_gadget": [] , "jumlah" : []}
     buku_hutang_dic["nama"] = [data[0] for data in buku_hutang_li]
     buku_hutang_dic["nama_gadget"] = [data[1] for data in buku_hutang_li]
-    buku_hutang_dic["jumlah"] = [data[2] for data in buku_hutang_li]
+    buku_hutang_dic["jumlah"] = [int(data[2]) for data in buku_hutang_li]
     return buku_hutang_dic
 
 
@@ -133,7 +133,7 @@ def validasi_pinjamgadget(datas_gadget_id , datas_gadget_jumlah):               
                 print('Masukan tidak diterima , silahkan coba lagi')
             elif datas_gadget_jumlah[index_id] == 0:
                 print('Stok barang telah habis, silahkan meminjam gadget lain')
-            elif jumlah_pinjam > datas_gadget_jumlah[index_id]:
+            elif jumlah_pinjam > int(datas_gadget_jumlah[index_id]):
                 print('Jumlah yg diinginkan berlebihan, stok tidak cukup! Silahkan coba lagi')
             else:
                 cek += 1
@@ -168,7 +168,7 @@ def validasi_balikgadget(pinjaman_user):                                        
             cek += 1
             if jumlah_return <= 0:
                 print('Masukan tidak diterima , silahkan coba lagi')
-            elif jumlah_return > pinjaman_user['jumlah_pinjaman'][index_id]:
+            elif jumlah_return > int(pinjaman_user['jumlah_pinjaman'][index_id]):
                 print('jumlah yang ingin dikembalikan berlebihan, silahkan coba lagi')
             else:
                 cek += 1
@@ -208,7 +208,6 @@ def validasi_mintaconsumable(datas_consume_id , datas_consume_jumlah):          
     return jumlah_consume , tanggal_consume , index_id
 
 
-buku_hutang_dic = {"nama" : [] , "nama_gadget": [] , "jumlah" : []}
 
 def pinjam(user_name , identity , datas_gadget , buku_hutang_li , gadget_borrow_history):
     #list datas secondary (gadget) -> untuk mengecek keberadaan item gadget
@@ -292,7 +291,7 @@ def kembalikan(user_name , user_identity , datas_gadget , buku_hutang_li , gadge
             indeks_gadget_pinjaman = i
 
     #gadget keluar dari buku_hutang_dic
-    buku_hutang_dic['jumlah'][indeks_gadget_pinjaman] -= jumlah_return
+    buku_hutang_dic['jumlah'][indeks_gadget_pinjaman] = int(buku_hutang_dic['jumlah'][indeks_gadget_pinjaman]) - jumlah_return
 
     #gadget kembali ke datas_gadget
     index_barang            = datas_gadget_name.index(gadget_kembalian)                            #letak indeks gadget hasil pinjaman pada list gadget
