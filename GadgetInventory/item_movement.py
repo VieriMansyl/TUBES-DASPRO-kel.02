@@ -221,7 +221,6 @@ def pinjam(user_name , identity , datas_gadget , buku_hutang_li , gadget_borrow_
     buku_hutang_dic = li_to_dic_buku_hutang(buku_hutang_li)                                          #konversi buku hutang dari list of list ke dictionaries
 
     #cek nama user dan nama gadget dalam buku_hutang_dic
-    data_nama  = [data[0]]
 
     datas_hutang_nama   = buku_hutang_dic["nama"][:]
     datas_hutang_gadget = buku_hutang_dic["nama_gadget"][:]
