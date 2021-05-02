@@ -50,17 +50,19 @@
 
 def dic_to_li_buku_hutang(buku_hutang_dic):
     new_datas = []
-    new_1 = [nama for nama in buku_hutang_dic["nama_kode"]]
-    new_2 = [jumlah for jumlah in buku_hutang_dic["jumlah"]]
+    new_1 = [nama for nama in buku_hutang_dic["nama"]]
+    new_2 = [jumlah for jumlah in buku_hutang_dic["nama_gadget"]]
+    new_3 = [jumlah for jumlah in buku_hutang_dic["jumlah"]]
 
-    for i in range(len(buku_hutang_dic["nama_kode"])):
-        new_datas.append( [new_1[i] , new_2[i]] )
+    for i in range(len(buku_hutang_dic["nama"])):
+        new_datas.append( [new_1[i] , new_2[i]] , new_3[i] )
     return new_datas
 
 def li_to_dic_buku_hutang(buku_hutang_li):
-    buku_hutang_dic = {'nama_kode': [] , 'jumlah' : []}
-    buku_hutang_dic["nama_kode"] = [data[0] for data in buku_hutang_li]
-    buku_hutang_dic["jumlah"] = [data[1] for data in buku_hutang_li]
+    buku_hutang_dic = {"nama" : [] , "nama_gadget": [] , "jumlah" : []}
+    buku_hutang_dic["nama"] = [data[0] for data in buku_hutang_li]
+    buku_hutang_dic["nama_gadget"] = [data[1] for data in buku_hutang_li]
+    buku_hutang_dic["jumlah"] = [data[2] for data in buku_hutang_li]
     return buku_hutang_dic
 
 
@@ -206,6 +208,7 @@ def validasi_mintaconsumable(datas_consume_id , datas_consume_jumlah):          
     return jumlah_consume , tanggal_consume , index_id
 
 
+buku_hutang_dic = {"nama" : [] , "nama_gadget": [] , "jumlah" : []}
 
 def pinjam(user_name , identity , datas_gadget , buku_hutang_li , gadget_borrow_history):
     #list datas secondary (gadget) -> untuk mengecek keberadaan item gadget
@@ -217,16 +220,25 @@ def pinjam(user_name , identity , datas_gadget , buku_hutang_li , gadget_borrow_
 
     #gadget dipinjam dari datas_gadget dan tercatat ke buku_hutang_dic
     buku_hutang_dic = li_to_dic_buku_hutang(buku_hutang_li)                                          #konversi buku hutang dari list of list ke dictionaries
-    nama_kode       = user_name + "_" + datas_gadget[index_id][1]                                    #deklarasi kode menyesuaikan nama kode dalam buku hutang
 
-    if nama_kode not in buku_hutang_dic['nama_kode']:
-        buku_hutang_dic['nama_kode'].append(nama_kode)
+    #cek nama user dan nama gadget dalam buku_hutang_dic
+    data_nama  = [data[0]]
+
+    datas_hutang_nama   = buku_hutang_dic["nama"][:]
+    datas_hutang_gadget = buku_hutang_dic["nama_gadget"][:]
+    exist = False
+    for i in range(len(datas_hutang_nama)):
+        if (user_name == datas_hutang_nama[i]) and (datas_gadget[index_id][1] == datas_hutang_gadget[i]):
+                print(f"Gadget {datas_gadget[index_id][1]} belum dikembalikan seluruhnya. Mohon segera mengembalikannya.")
+                exist = True
+    
+    if not exist:
+        buku_hutang_dic['nama'].append(user_name)
+        buku_hutang_dic["nama_gadget"].append(datas_gadget[index_id][1])
         buku_hutang_dic['jumlah'].append(jumlah_pinjam)
 
         print(f"Item {datas_gadget[index_id][1]} (x{jumlah_pinjam}) berhasil dipinjam!")
         datas_gadget[index_id][3] -= jumlah_pinjam
-    else :                                                                                           #user masih memiliki gadget yang ingin dipinjam
-        print(f"Gadget {datas_gadget[index_id][1]} belum dikembalikan seluruhnya. Mohon segera mengembalikannya.")
 
     buku_hutang_li = dic_to_li_buku_hutang(buku_hutang_dic)                                          #konversi buku hutang dari dictionaries ke list of list
 
@@ -242,34 +254,42 @@ def kembalikan(user_name , user_identity , datas_gadget , buku_hutang_li , gadge
     datas_gadget_name   = [data[1] for data in datas_gadget]
 
     buku_hutang_dic     = li_to_dic_buku_hutang(buku_hutang_li)                                     #konversi buku hutang dari dictionaries ke list of list
-    nama_user           = [nama.split("_")[0] for nama in buku_hutang_dic["nama_kode"]]            #nama user yang tercatat dalam buku hutang (menyesuaikan urutan)
-    gadget_pinjam       = [nama.split("_")[1] for nama in buku_hutang_dic["nama_kode"]]             #gadget pinjaman dari para user (menyesuaikan urutan)
 
     #kasus apabila belum terjadi peminjaman gadget
-    if user_name not in nama_user:
-        print("Belum ada peminjaman")
-        return datas_gadget , buku_hutang_li , gadget_return_history
+    datas_hutang_nama   = buku_hutang_dic["nama"][:]
+    datas_hutang_gadget = buku_hutang_dic["nama_gadget"][:]
+    exist = False
 
     #list gadget yang dipinjam oleh user
     pinjaman_user = {"nama_gadget":[] , "jumlah_pinjaman" : []}                                     #rekapan gadget dan jumlah pinjaman dari seorang user
 
-    for i in range(len(buku_hutang_dic['nama_kode'])):
-        if nama_user[i] == user_name:
-            print(f"{i+1}. {gadget_pinjam[i]} (x{buku_hutang_dic['jumlah'][i]})")
+    for i in range(len(datas_hutang_nama)):                                                         #cek ada_tidaknya gadget yang masih dipinjam oleh user
+        if user_name == datas_hutang_nama[i]:
+                exist = True
+    
+    if exist:
+        for i in range(len(datas_hutang_nama)):
+            if user_name == datas_hutang_nama[i]:
+                    print(f"{i+1}. {datas_hutang_gadget[i]} (x{buku_hutang_dic['jumlah'][i]})")
+                    
+                    #merekap gadget pinjaman serta jumlah pinjamannya dari user
+                    pinjaman_user["nama_gadget"].append(datas_hutang_gadget[i])
+                    pinjaman_user["jumlah_pinjaman"].append(buku_hutang_dic['jumlah'][i])
+    else:
+        print("Belum ada peminjaman")
+        buku_hutang_li = dic_to_li_buku_hutang(buku_hutang_dic)                                      #konversi buku hutang dari dictionaries ke list of list
+        return datas_gadget , buku_hutang_li , gadget_return_history
 
-            #merekap gadget pinjaman serta jumlah pinjamannya dari user
-            pinjaman_user["nama_gadget"].append(gadget_pinjam[i])
-            pinjaman_user["jumlah_pinjaman"].append(buku_hutang_dic['jumlah'][i])
 
     #VALIDASI DATA
     tanggal_return, jumlah_return, index_id = validasi_balikgadget(pinjaman_user)
 
     gadget_kembalian = pinjaman_user['nama_gadget'][index_id]
+    print(f"Item {gadget_kembalian} (x{jumlah_return}) telah dikembalikan!")
 
-    print(f"Item {gadget_kembalian} (x{jumlah_return}) telah dikembalikan")
-
-    nama_kode               = user_name + "_" + gadget_kembalian                                   #deklarasi kode menyesuaikan nama kode dalam buku hutang
-    indeks_gadget_pinjaman  = buku_hutang_dic['nama_kode'].index(nama_kode)
+    for i in range(len(datas_hutang_nama)):
+        if (user_name == buku_hutang_dic['nama'][i]) and (gadget_kembalian == buku_hutang_dic['nama_gadget'][i]):
+            indeks_gadget_pinjaman = i
 
     #gadget keluar dari buku_hutang_dic
     buku_hutang_dic['jumlah'][indeks_gadget_pinjaman] -= jumlah_return
@@ -280,25 +300,24 @@ def kembalikan(user_name , user_identity , datas_gadget , buku_hutang_li , gadge
 
     #gadget tercatat ke gadget_return_history
     ID_kembalian        = len(gadget_return_history) + 1
-    id_peminjaman       = [data[0] for data in gadget_borrow_history]
-    data_history_pinjam = [data[1] + "_" + data[2] for data in gadget_borrow_history]
-    nama_kode_identity  = user_identity + "_" + gadget_kembalian
+    id_gadget           = datas_gadget[index_barang][0]
     indeks_ID_pinjam    = 0
 
     for i in range(len(gadget_borrow_history)):
-        if data_history_pinjam[i] == nama_kode_identity:
+        if user_identity == gadget_borrow_history[i][1] and id_gadget == gadget_borrow_history[i][2]:
             indeks_ID_pinjam = i
 
-    data_history        = [ID_kembalian , id_peminjaman[indeks_ID_pinjam] , tanggal_return , jumlah_return]
+    data_history        = [ID_kembalian , gadget_borrow_history[indeks_ID_pinjam][0] , tanggal_return , jumlah_return]
     gadget_return_history.append(data_history)
 
     #kondisi ketika gadget telah dikembalikan semuanya
     if buku_hutang_dic['jumlah'][indeks_gadget_pinjaman] == 0 :
         print(f"Selamat! Item {gadget_kembalian} telah dikembalikan semua!")
-        buku_hutang_dic['nama_kode'].remove(nama_kode)                                              #menghapus nama gadget dengan value kosong
-        buku_hutang_dic['jumlah'].remove(0)                                                         #menghapus jumlah gadget bernilai 0
+        buku_hutang_dic['nama'].remove(buku_hutang_dic['nama'][indeks_gadget_pinjaman])                 #menghapus nama user dengan value kosong
+        buku_hutang_dic['nama_gadget'].remove(buku_hutang_dic['nama_gadget'][indeks_gadget_pinjaman])   #menghapus nama gadget dengan value kosong
+        buku_hutang_dic['jumlah'].remove(0)                                                             #menghapus jumlah gadget bernilai 0
 
-    buku_hutang_li = dic_to_li_buku_hutang(buku_hutang_dic)                                         #konversi buku hutang dari dictionaries ke list of list
+    buku_hutang_li = dic_to_li_buku_hutang(buku_hutang_dic)                                             #konversi buku hutang dari dictionaries ke list of list
 
     return datas_gadget , buku_hutang_li , gadget_return_history
 
