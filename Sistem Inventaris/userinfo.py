@@ -22,14 +22,6 @@ def used_name(word):
         real_name = "".join(nameArr)
         return(real_name)
 
-# Procedure is_underscore
-# Menge-cek apakah ada underscore
-# Parameter : x
-def is_underscore(x):
-    for char in x:
-        if (char == "_"):
-            return True
-
 # Procedure is_first_all_spaces
 # Menge-cek apakah karakter pertama atau terakhir username berupa spasi atau terdapat 2 spasi atau lebih yang berurutan
 # Parameter : x
@@ -69,7 +61,7 @@ def register(users_data) :
 
     username = input("Masukkan username : ")
     # Username tidak boleh kosong / ada yg kembar / karakter pertama atau terakhir berupa spasi / terdapat 2 spasi atau lebih yang berurutan
-    while (username == "") or (no_username_kembar(username, users_data) == False) or (is_underscore(username) == True) or (is_first_all_spaces(username)==True):
+    while (username == "") or (no_username_kembar(username, users_data) == False) or (is_first_all_spaces(username)==True):
         print("Username invalid, masukkan username lain !")
         username = input("Masukkan username : ")
 
